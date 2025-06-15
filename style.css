@@ -15,3 +15,30 @@ body {
     width: 90%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
+
+.scene-box{
+    margin: 20px;
+    min-height: 100px;
+}
+
+.button-grid{
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: #77d6ff;
+    color: #04395e;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.button-grid button:hover {
+    background-color: #56c4ed;
+}
+
+.inventory-box{
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+}
