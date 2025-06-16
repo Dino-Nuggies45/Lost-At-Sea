@@ -54,8 +54,8 @@ const scenes = {
     adventureTime: {
         text: "As you board the ship, the Captain examines you. 'We were looking for a lost relic, but this sand will do millions back at the port, get settled in, dinner is at moonrise.' You look around and notice some crew members you can talk to.",
         options: [
-            { text: "Talk to the lonely crewmember", next: "lonelyCrew" },
-            { text: "Talk to the excited crewmember", next: "excitedCrew" },
+            { text: "Talk to the lonely crewmember", next: "lonelyCrew", once: "lonelyCrewDone" },
+            { text: "Talk to the excited crewmember", next: "excitedCrew", once: "excitedCrewDone" },
             { text: "Talk to the tired crewmember", next: "tiredCrew", once: "tiredCrewDone" },
             { text: "Offer the magic shell", next: "offeringCaptain", condition: "Magic Shell", consume: "Magic Shell" },
             { text: "Offer the location of the temple", next: "offerLocation", condition: "ancientTempleLocation", consume: "ancientTempleLocation" },
@@ -66,26 +66,57 @@ const scenes = {
     
 
     lonelyCrew: {
-        text: "As you board the ship, the Captain examines you. 'We were looking for a lost relic, but this sand will do millions back at the port, get settled in, dinner is at moonrise.' You look around and notice some crew members you can talk to.",
+        text: "You approach a crewmember sitting alone, his gaze fixed on the horizon. Your presence seems to startle him. 'Oh, hello there,' he says softly. You introduce yourself and explain your situation. You ask if he needs any help. He shakes his head, 'No...sometimes you just need a moment away from the chaos of the ship.' You nod and sit with him a while longer. He begins to play a soft song on a self made bangoo.",
         options: [
-            { text: "Talk to the lonely crewmember", next: "lonelyCrew" },
-            { text: "Talk to the excited crewmember", next: "excitedCrew" },
-            { text: "Talk to the tired crewmember", next: "tiredCrew" },
-            { text: "Offer the magic shell", next: "offeringCaptain", condition: "Magic Shell", consume: "Magic Shell" },
-            { text: "Offer the location of the temple", next: "offerLocation", condition: "ancientTempleLocation", consume: "ancientTempleLocation" },
-            { text: "Watch the Ocean until dinner", next: "oceanWatching" }
+            { text: "Listen and enjoy the music", next: "musicEnjoyed" },
+            { text: "Leave him to his thoughts and go back to the main deck", next: "adventureTime", once: "lonelyCrewDone" },
+        ]
+    },
+
+    musicEnjoyed: {
+        text: "...",
+        options: [
+            { text: "Leave him to his thoughts and go back to the main deck", next: "adventureTime", once: "lonelyCrewDone" }
         ]
     },
 
   excitedCrew: {
-        text: "As you board the ship, the Captain examines you. 'We were looking for a lost relic, but this sand will do millions back at the port, get settled in, dinner is at moonrise.' You look around and notice some crew members you can talk to.",
+        text: "You walk over to a crewmember who is lugging a heavy jug of wine. 'This is going to be the best dinner yet!' he laughs. As you approach he sets down the jug, 'Hey! You're the new mate! How did you end up here?' You explain your story to him and he nods in understanding. 'Well, if you want to help us out, we could use some extra hands. Carry one of those other jugs to the dinner table for me yeah?'",
         options: [
-            { text: "Talk to the lonely crewmember", next: "lonelyCrew" },
-            { text: "Talk to the excited crewmember", next: "excitedCrew" },
-            { text: "Talk to the tired crewmember", next: "tiredCrew" },
-            { text: "Offer the magic shell", next: "offeringCaptain", condition: "Magic Shell", consume: "Magic Shell" },
-            { text: "Offer the location of the temple", next: "offerLocation", condition: "ancientTempleLocation", consume: "ancientTempleLocation" },
-            { text: "Watch the Ocean until dinner", next: "oceanWatching" }
+             { text: "Grab a heavy jug", next: "heavyJug" },
+             { text: "Grab a light jug", next: "lightJug" }
+        ]
+    },
+
+    lightJug: {
+        text: "You pick up the light jug and carry it with ease. The excited crewmember grins, 'Look at you! Little weakling in our crew yeah?' You carry it to the dinner table, but you can feel the crews disappointment.",
+        options: [
+            { text: "go back and get the heavy jug", next: "anotherRound2" },
+            { text: "head back to the main deck", next: "adventureTime", once: "excitedCrewDone" }
+        ]
+    },
+
+    heavyJug: {
+        text: "You pick up the heavy jug and struggle to carry it. The excited crewmember laughs, 'You sure you can handle that? It's a bit much for a new mate!' You manage to carry it to the dinner table, but you're exhausted.",
+        options: [
+            { text: "go back and get the light jug", next: "anotherRound1" },
+            { text: "head back to the main deck", next: "adventureTime", once: "excitedCrewDone" }
+        ]
+    },
+
+    anotherRound1: {
+        text: "You head back to the excited crewmember, who is still laughing grabbing the light jug from him 'Okay big guy! Thanks for your help!'",
+        options: [
+            { text: "Head back to the main deck", next: "adventureTime", once: "excitedCrewDone" }
+        ]
+    },
+
+    anotherRound2: {
+        text: "You head back to the excited crewmember, who is still laughing you grab the heavy jug from him. 'Desprate for a redemption aye? Go for it, don't spill or you're paying!'",
+        options: [
+            { text: "Head back to the main deck", next: "adventureTime", 
+                once: "excitedCrewDone" 
+            }
         ]
     },
 
@@ -117,30 +148,41 @@ const scenes = {
         text: "You take the sack of sand and place it on the top bunk. The tired crewmember looks at you with a frown, 'Really? You could have at least asked them...but whatever. I wont tell'",
         options: [
             { text: "leave the tired crewmember to his rest and go back up", next: "adventureTime",
-            onChoose: () => { state.completedScenes["tiredCrewDone"] = true; }
-             }
+                once: "tiredCrewDone", 
+                setChoice: { key: "choice", value: "sand" }  
+            }
         ]
     },
 
     birdCage: {
         text: "You take the bird cage and place it on the top bunk. The tired crewmember raises an eyebrow, 'A bird cage? Really? Well, at least it's something.'",
         options: [
-            { text: "leave the tired crewmember to his rest and go back up", next: "adventureTime" }
+            { text: "leave the tired crewmember to his rest and go back up", next: "adventureTime", 
+                once: "tiredCrewDone", 
+                setChoice: { key: "choice", value: "birdCage" } 
+            }
         ]
     },
 
     crate: {
         text: "You take the heavy crate and place it on the top bunk. The tired crewmember looks at you with a mix of admiration and concern, 'That's...a bit much, but I guess it works.'",
         options: [
-            { text: "leave the tired crewmember to his rest and go back up", next: "adventureTime" }
+            { text: "leave the tired crewmember to his rest and go back up", next: "adventureTime", once: "tiredCrewDone", setChoice: { key: "choice", value: "crate" } }
         ]
     },
 
   offeringCaptain: {
         text: "You hand over the magic shell. The Captain smiles, 'This is the conch! It is said to have the ability to summon the sea gods! I declare you my right hand! This is worth a fortune!'",
         options: [
-            { text: "'Actually give it back I want it for myself!", next: "takeBack", consume: "Magic Shell" },
-            { text: "Smile at the Captain, proud of the upgrade", next: "accept"},
+            { text: "'Actually give it back I want it for myself!", next: "refusal" },
+            { text: "Smile at the Captain, proud of the upgrade", next: "accept", consume: "Magic Shell"},
+        ]
+    },
+
+    accept: {
+        text: "The Captain grins, 'Wonderful! Now we can sail the seas without any worry! I will make sure you get your share of the fortune! In the meantime, head to the main deck, socialize, enjoy the waves!'",
+        options: [
+            { text: "Bid her farewell and head to the main deck", next: "adventureTime" },
         ]
     },
 
@@ -148,7 +190,21 @@ const scenes = {
         text: "The Captain listens raising a curious brow, 'A temple? Hm...I guess we won't be needing this sand after all. Lead us to this...temple...I heard its the key to getting home...and making a fat stack of cash.'",
         options: [
             { text: "Refuse, the treasure is yours to keep now", next: "refusal" },
-            { text: "Accept, the pirates are honest you both benefit", next: "accept"},
+            { text: "Accept, the pirates are honest you both benefit", next: "accept", consume: "Ancient Temple Location" },
+        ]
+    },
+
+    accept: {
+        text: "The Captain nods, 'Good choice! We will have to postpone our trip home and investigate that temple in the morning! In the meantime, head to the main deck, socialize, enjoy the waves!'",
+        options: [
+            { text: "Bid her farewell and head to the main deck", next: "adventureTime" },
+        ]
+    },
+
+    refusal: {
+        text: "The Captain frowns, 'You landlubber! You think we'll let you go after this? We'll see about that!' The crew turns hostile, and you are forced to jump overboard to escape.",
+        options: [
+            { text: "Swim back to the raft", next: "intro" }
         ]
     },
 
@@ -164,6 +220,31 @@ const scenes = {
         text: "You lean on the edge of the ship, watching the waves. The ocean is calm, and you feel a sense of peace. The sun dips below the horizon, painting the sky in hues of orange and purple. The moon rises as the crew prepares dinner. You feel a strange connection to the ocean, as if it holds secrets waiting to be discovered.",
         options: [
             { text: "Go Eat Dinner", next: "dinnerTime" }
+        ]
+    },
+
+    dinnerTime: {
+        text: "Dinner is served. The crew gathers around, sharing stories and laughter. You feel a sense of belonging, even if just for a moment. As you eat, you notice the tired crewmember from earlier looking at you with a nod of approval. The excited crewmember raises his jug in a toast to you, and the lonely crewmember smiles softly.",
+        options: [
+            { text: "Enjoy the meal and camaraderie", next: "bunkerResults" }
+        ]
+    },
+
+    bunkerResults: {
+        text: () => {
+            const choice = state.choices.choice;
+            if (choice === "sand") {
+                return "You return to the bunk and find the sack of sand and your bunk still there.";
+            } else if (choice === "birdCage") {
+                return "You return to find your bunk occupied the bird cage knocked off the bed. You sigh and scurry to find a place on the floor to sleep.";
+            } else if (choice === "crate") {
+                return "You return to the bunk and find the heavy crate and your bunk still there. Although it takes a log of effort to get rid of the crate before you sleep, it is worth it to have a nice bed to sleep in.";
+            } else {
+                return "You didn't make a choice, so you find a random spot on the floor. It's not the most comfortable, but it will do for the night.";
+            }
+        },
+        options: [
+            { text: "Go To Sleep", next: "sleepScene" }
         ]
     },
 
@@ -230,7 +311,7 @@ const scenes = {
             { text: "Enter the temple", next: "endingOne" },
             { text: "Run back to the raft", next: "intro" }
         ],
-        inventoryGain: "ancientTempleLocation"
+        inventoryGain: "Ancient Temple Location"
     },
 
     endingOne: {
@@ -260,7 +341,7 @@ function showScene(key) {
         updateInventory();
     }
 
-    sceneDiv.textContent = scene.text;
+    sceneDiv.textContent = typeof scene.text === "function" ? scene.text() : scene.text;
     optionsDiv.innerHTML = "";
 
     if (scene.reset) {
