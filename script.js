@@ -2,7 +2,6 @@ const inventory = {};
 
 const scenes = {
     intro: {
-        reset: true,
         text: "You wake up on a wooden raft, adrift in a vast ocean. The sun is setting, casting a golden hue over the water. You have no memory of how you got here, but you know you need to survive. Two islands and a pirate ship are visible in the distance.",
         options: [
             { text: "Swim to the misty island", next: "mistyIsland" },
@@ -30,7 +29,7 @@ const scenes = {
         text: "The pirate ship sails closer, weary of you. A pirate shouts, 'What do you want you landlubber?'",
         options: [
             { text: "Hey I'm not a landlubber! I need help getting home", next: "homeHelp" },
-            { text: "I have something to offer in exchange for your help", next: "offerItem", condition: "Glowing Sand" }
+            { text: "I have something to offer in exchange for your help", next: "offerItem", condition: "Glowing Sand", consume: "Glowing Sand" }
         ]
     },
 
@@ -47,6 +46,90 @@ const scenes = {
             { text: "Climb on the ship and get ready for the adventure", next: "adventureTime" }
         ]
     },
+
+    adventureTime: {
+        text: "As you board the ship, the Captain examines you. 'We were looking for a lost relic, but this sand will do millions back at the port, get settled in, dinner is at moonrise.' You look around and notice some crew members you can talk to.",
+        options: [
+            { text: "Talk to the lonely crewmember", next: "lonelyCrew" },
+            { text: "Talk to the excited crewmember", next: "excitedCrew" },
+            { text: "Talk to the tired crewmember", next: "tiredCrew" },
+            { text: "Offer the magic shell", next: "offeringCaptain", condition: "Magic Shell", consume: "Magic Shell" },
+            { text: "Offer the location of the temple", next: "offerLocation", condition: "ancientTempleLocation", consume: "ancientTempleLocation" },
+            { text: "Watch the Ocean until dinner", next: "oceanWatching" }
+        ]
+    },
+
+    lonelyCrew: {
+        text: "As you board the ship, the Captain examines you. 'We were looking for a lost relic, but this sand will do millions back at the port, get settled in, dinner is at moonrise.' You look around and notice some crew members you can talk to.",
+        options: [
+            { text: "Talk to the lonely crewmember", next: "lonelyCrew" },
+            { text: "Talk to the excited crewmember", next: "excitedCrew" },
+            { text: "Talk to the tired crewmember", next: "tiredCrew" },
+            { text: "Offer the magic shell", next: "offeringCaptain", condition: "Magic Shell", consume: "Magic Shell" },
+            { text: "Offer the location of the temple", next: "offerLocation", condition: "ancientTempleLocation", consume: "ancientTempleLocation" },
+            { text: "Watch the Ocean until dinner", next: "oceanWatching" }
+        ]
+    },
+
+  excitedCrew: {
+        text: "As you board the ship, the Captain examines you. 'We were looking for a lost relic, but this sand will do millions back at the port, get settled in, dinner is at moonrise.' You look around and notice some crew members you can talk to.",
+        options: [
+            { text: "Talk to the lonely crewmember", next: "lonelyCrew" },
+            { text: "Talk to the excited crewmember", next: "excitedCrew" },
+            { text: "Talk to the tired crewmember", next: "tiredCrew" },
+            { text: "Offer the magic shell", next: "offeringCaptain", condition: "Magic Shell", consume: "Magic Shell" },
+            { text: "Offer the location of the temple", next: "offerLocation", condition: "ancientTempleLocation", consume: "ancientTempleLocation" },
+            { text: "Watch the Ocean until dinner", next: "oceanWatching" }
+        ]
+    },
+
+  tiredCrew: {
+        text: "As you board the ship, the Captain examines you. 'We were looking for a lost relic, but this sand will do millions back at the port, get settled in, dinner is at moonrise.' You look around and notice some crew members you can talk to.",
+        options: [
+            { text: "Talk to the lonely crewmember", next: "lonelyCrew" },
+            { text: "Talk to the excited crewmember", next: "excitedCrew" },
+            { text: "Talk to the tired crewmember", next: "tiredCrew" },
+            { text: "Offer the magic shell", next: "offeringCaptain", condition: "Magic Shell", consume: "Magic Shell" },
+            { text: "Offer the location of the temple", next: "offerLocation", condition: "ancientTempleLocation", consume: "ancientTempleLocation" },
+            { text: "Watch the Ocean until dinner", next: "oceanWatching" }
+        ]
+    },
+
+  offeringCaptain: {
+        text: "As you board the ship, the Captain examines you. 'We were looking for a lost relic, but this sand will do millions back at the port, get settled in, dinner is at moonrise.' You look around and notice some crew members you can talk to.",
+        options: [
+            { text: "Talk to the lonely crewmember", next: "lonelyCrew" },
+            { text: "Talk to the excited crewmember", next: "excitedCrew" },
+            { text: "Talk to the tired crewmember", next: "tiredCrew" },
+            { text: "Offer the magic shell", next: "offeringCaptain", condition: "Magic Shell", consume: "Magic Shell" },
+            { text: "Offer the location of the temple", next: "offerLocation", condition: "ancientTempleLocation", consume: "ancientTempleLocation" },
+            { text: "Watch the Ocean until dinner", next: "oceanWatching" }
+        ]
+    },
+
+  offerLocation: {
+        text: "The Captain listens raising a curious brow, 'A temple? Hm...I guess we won't be needing this sand after all. Lead us to this...temple...I heard its the key to getting home...and making a fat stack of cash.'",
+        options: [
+            { text: "Refuse, the treasure is yours to keep now", next: "refusal" },
+            { text: "Accept, the pirates are honest you both benefit", next: "accept"},
+        ]
+    },
+
+    confirmationPage: {
+        text: "You have chosen to watch the ocean until dinner. All other options will be unavailable. Are you sure you want to proceed?",
+        options: [
+            { text: "Yes", next: "oceanWatching" },
+            { text: "No", next: "adventureTime" }
+        ]
+    },
+
+  oceanWatching: {
+        text: "You lean on the edge of the ship, watching the waves. The ocean is calm, and you feel a sense of peace. The sun dips below the horizon, painting the sky in hues of orange and purple. The moon rises as the crew prepares dinner. You feel a strange connection to the ocean, as if it holds secrets waiting to be discovered.",
+        options: [
+            { text: "Go Eat Dinner", next: "dinnerTime" }
+        ]
+    },
+
 
     sandCollected: {
         text: "You bottle some glowing sand. It hums faintly in your hand before you stash it away.",
@@ -107,15 +190,18 @@ const scenes = {
     templeEntrance: {
         text: "You find an ancient temple. The walls are covered in glowing runes.",
         options: [
-            { text: "Enter the temple", next: "endingOne" }
-        ]
+            { text: "Enter the temple", next: "endingOne" },
+            { text: "Run back to the raft", next: "intro" }
+        ],
+        inventoryGain: "ancientTempleLocation"
     },
 
     endingOne: {
         text: "Inside the temple, you find a glowing crystal. As you touch it, visions of the way home flood your mind. You Win!",
         options: [
             { text: "Play Again", next: "intro" }
-        ]
+        ],
+        reset: true
     }
 };
 
