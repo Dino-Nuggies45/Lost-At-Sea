@@ -21,7 +21,7 @@ body {
     min-height: 100px;
 }
 
-.button-grid{
+.button-box button {
     margin: 5px;
     padding: 10px;
     font-size: 16px;
@@ -33,9 +33,10 @@ body {
     transition: background-color 0.2s ease-in-out;
 }
 
-.button-grid button:hover {
+.button-box button:hover {
     background-color: #56c4ed;
 }
+
 
 .inventory-box{
     margin-top: 20px;
