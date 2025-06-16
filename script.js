@@ -56,7 +56,7 @@ const scenes = {
         options: [
             { text: "Talk to the lonely crewmember", next: "lonelyCrew" },
             { text: "Talk to the excited crewmember", next: "excitedCrew" },
-            { text: "Talk to the tired crewmember", next: "tiredCrew" },
+            { text: "Talk to the tired crewmember", next: "tiredCrew", once: "tiredCrewDone" },
             { text: "Offer the magic shell", next: "offeringCaptain", condition: "Magic Shell", consume: "Magic Shell" },
             { text: "Offer the location of the temple", next: "offerLocation", condition: "ancientTempleLocation", consume: "ancientTempleLocation" },
             { text: "Watch the Ocean until dinner", next: "confirmationPage" }
@@ -260,12 +260,6 @@ function showScene(key) {
         updateInventory();
     }
 
-
-   function showScene(key) {
-    const scene = scenes[key];
-    const sceneDiv = document.getElementById("scene");
-    const optionsDiv = document.getElementById("options");
-
     sceneDiv.textContent = scene.text;
     optionsDiv.innerHTML = "";
 
@@ -301,6 +295,10 @@ function showScene(key) {
                 state.choices[option.setChoice.key] = option.setChoice.value;
             }
 
+            if (option.once) {
+                state.completedScenes[option.once] = true;
+            }
+
             showScene(option.next);
         };
         optionsDiv.appendChild(btn);
@@ -322,4 +320,4 @@ function updateInventory() {
 }
 
 
-showScene("intro"); }
+showScene("intro");
