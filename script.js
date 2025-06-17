@@ -148,8 +148,8 @@ const scenes = {
         text: "You take the sack of sand and place it on the top bunk. The tired crewmember looks at you with a frown, 'Really? You could have at least asked them...but whatever. I wont tell'",
         options: [
             { text: "leave the tired crewmember to his rest and go back up", next: "adventureTime",
-                once: "tiredCrewDone", 
-                setChoice: { key: "choice", value: "sand" }  
+                
+                 
             }
         ]
     },
@@ -244,7 +244,7 @@ const scenes = {
             }
         },
         options: [
-            { text: "Go To Sleep", next: "sleepScene" }
+            { text: "Go To Sleep", next: "nextDay" }
         ]
     },
 
