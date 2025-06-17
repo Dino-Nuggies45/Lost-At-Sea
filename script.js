@@ -58,7 +58,7 @@ const scenes = {
             { text: "Talk to the excited crewmember", next: "excitedCrew", once: "excitedCrewDone" },
             { text: "Talk to the tired crewmember", next: "tiredCrew", once: "tiredCrewDone" },
             { text: "Offer the magic shell", next: "offeringCaptain", condition: "Magic Shell", consume: "Magic Shell" },
-            { text: "Offer the location of the temple", next: "offerLocation", condition: "ancientTempleLocation", consume: "ancientTempleLocation" },
+            { text: "Offer the location of the temple", next: "offerLocation", condition: "Ancient Temple Location", consume: "Ancient Temple Location" },
             { text: "Watch the Ocean until dinner", next: "confirmationPage" }
         ]
     },
@@ -173,11 +173,13 @@ const scenes = {
         text: "You hand over the magic shell. The Captain smiles, 'This is the conch! It is said to have the ability to summon the sea gods! I declare you my right hand! This is worth a fortune!'",
         options: [
             { text: "'Actually give it back I want it for myself!", next: "refusal" },
-            { text: "Smile at the Captain, proud of the upgrade", next: "accept", consume: "Magic Shell"},
+            { text: "Smile at the Captain, proud of the upgrade", next: "accept1", consume: "Magic Shell",
+                setChoice: { key: "gaveMagicShell", value: true} 
+            },
         ]
     },
 
-    accept: {
+    accept1: {
         text: "The Captain grins, 'Wonderful! Now we can sail the seas without any worry! I will make sure you get your share of the fortune! In the meantime, head to the main deck, socialize, enjoy the waves!'",
         options: [
             { text: "Bid her farewell and head to the main deck", next: "adventureTime" },
@@ -188,7 +190,9 @@ const scenes = {
         text: "The Captain listens raising a curious brow, 'A temple? Hm...I guess we won't be needing this sand after all. Lead us to this...temple...I heard its the key to getting home...and making a fat stack of cash.'",
         options: [
             { text: "Refuse, the treasure is yours to keep now", next: "refusal" },
-            { text: "Accept, the pirates are honest you both benefit", next: "accept", consume: "Ancient Temple Location" },
+            { text: "Accept, the pirates are honest you both benefit", next: "accept", consume: "Ancient Temple Location",
+                setChoice: { key: "revealedTemple", value: true } 
+             },
         ]
     },
 
@@ -236,7 +240,7 @@ const scenes = {
             } else if (choice === "birdCage") {
                 return "You return to find your bunk occupied the bird cage knocked off the bed. You sigh and scurry to find a place on the floor to sleep.";
             } else if (choice === "crate") {
-                return "You return to the bunk and find the heavy crate and your bunk still there. Although it takes a log of effort to get rid of the crate before you sleep, it is worth it to have a nice bed to sleep in.";
+                return "You return to the bunk and find the heavy crate and your bunk still there. Although it takes a lot of effort to get rid of the crate before you sleep, it is worth it to have a nice bed to sleep in.";
             } else {
                 return "You didn't make a choice, so you find a random spot on the floor. It's not the most comfortable, but it will do for the night.";
             }
@@ -244,6 +248,27 @@ const scenes = {
         options: [
             { text: "Go To Sleep", next: "nextDay" }
         ]
+    },
+
+    nextDay: {
+        text: () => {
+            if (state.choices.revealedTemple) {
+                return "You wake up to the sound of waves and the smell of salt in the air. The crew is already up, preparing to set sail towards the temple. The Captain nods at you, 'Ready for an adventure?'";
+            } else if (state.choices.gaveMagicShell) {
+                return "You wake up with a sense of purpose. You head out to the main deck where the Captain is waiting. 'Today we sail to riches!' she declares, holding the magic shell high.";
+            } else {
+                return "The tired crewmember wakes you up, 'Time to get moving, mate. Theres a lot on the agenda.' You stretch and prepare for whatever lies ahead.";
+            }
+        },
+        options: () => {            
+            if (state.choices.revealedTemple) {
+                return [{ text: "Set sail to the temple", next: "templeSailing" }];
+            } else if (state.choices.gaveMagicShell) {
+                return [{ text: "Set sail to riches", next: "dailyChoresRightHand" }];
+            } else {
+                return [{ text: "Get ready for the day", next: "dailyChoresCrew" }];
+            }
+        },
     },
 
 
