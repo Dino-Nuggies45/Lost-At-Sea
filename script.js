@@ -69,14 +69,14 @@ const scenes = {
         text: "You approach a crewmember sitting alone, his gaze fixed on the horizon. Your presence seems to startle him. 'Oh, hello there,' he says softly. You introduce yourself and explain your situation. You ask if he needs any help. He shakes his head, 'No...sometimes you just need a moment away from the chaos of the ship.' You nod and sit with him a while longer. He begins to play a soft song on a self made bangoo.",
         options: [
             { text: "Listen and enjoy the music", next: "musicEnjoyed" },
-            { text: "Leave him to his thoughts and go back to the main deck", next: "adventureTime", once: "lonelyCrewDone" },
+            { text: "Leave him to his thoughts and go back to the main deck", next: "adventureTime"}
         ]
     },
 
     musicEnjoyed: {
         text: "...",
         options: [
-            { text: "Leave him to his thoughts and go back to the main deck", next: "adventureTime", once: "lonelyCrewDone" }
+            { text: "Leave him to his thoughts and go back to the main deck", next: "adventureTime" }
         ]
     },
 
@@ -92,7 +92,7 @@ const scenes = {
         text: "You pick up the light jug and carry it with ease. The excited crewmember grins, 'Look at you! Little weakling in our crew yeah?' You carry it to the dinner table, but you can feel the crews disappointment.",
         options: [
             { text: "go back and get the heavy jug", next: "anotherRound2" },
-            { text: "head back to the main deck", next: "adventureTime", once: "excitedCrewDone" }
+            { text: "head back to the main deck", next: "adventureTime", }
         ]
     },
 
@@ -100,23 +100,21 @@ const scenes = {
         text: "You pick up the heavy jug and struggle to carry it. The excited crewmember laughs, 'You sure you can handle that? It's a bit much for a new mate!' You manage to carry it to the dinner table, but you're exhausted.",
         options: [
             { text: "go back and get the light jug", next: "anotherRound1" },
-            { text: "head back to the main deck", next: "adventureTime", once: "excitedCrewDone" }
+            { text: "head back to the main deck", next: "adventureTime",  }
         ]
     },
 
     anotherRound1: {
         text: "You head back to the excited crewmember, who is still laughing grabbing the light jug from him 'Okay big guy! Thanks for your help!'",
         options: [
-            { text: "Head back to the main deck", next: "adventureTime", once: "excitedCrewDone" }
+            { text: "Head back to the main deck", next: "adventureTime"}
         ]
     },
 
     anotherRound2: {
         text: "You head back to the excited crewmember, who is still laughing you grab the heavy jug from him. 'Desprate for a redemption aye? Go for it, don't spill or you're paying!'",
         options: [
-            { text: "Head back to the main deck", next: "adventureTime", 
-                once: "excitedCrewDone" 
-            }
+            { text: "Head back to the main deck", next: "adventureTime", }
         ]
     },
 
@@ -148,8 +146,7 @@ const scenes = {
         text: "You take the sack of sand and place it on the top bunk. The tired crewmember looks at you with a frown, 'Really? You could have at least asked them...but whatever. I wont tell'",
         options: [
             { text: "leave the tired crewmember to his rest and go back up", next: "adventureTime",
-                
-                 
+                setChoice: { key: "choice", value: "sand" } 
             }
         ]
     },
@@ -158,7 +155,6 @@ const scenes = {
         text: "You take the bird cage and place it on the top bunk. The tired crewmember raises an eyebrow, 'A bird cage? Really? Well, at least it's something.'",
         options: [
             { text: "leave the tired crewmember to his rest and go back up", next: "adventureTime", 
-                once: "tiredCrewDone", 
                 setChoice: { key: "choice", value: "birdCage" } 
             }
         ]
@@ -167,7 +163,9 @@ const scenes = {
     crate: {
         text: "You take the heavy crate and place it on the top bunk. The tired crewmember looks at you with a mix of admiration and concern, 'That's...a bit much, but I guess it works.'",
         options: [
-            { text: "leave the tired crewmember to his rest and go back up", next: "adventureTime", once: "tiredCrewDone", setChoice: { key: "choice", value: "crate" } }
+            { text: "leave the tired crewmember to his rest and go back up", next: "adventureTime", 
+                 setChoice: { key: "choice", value: "crate" } 
+            }
         ]
     },
 
