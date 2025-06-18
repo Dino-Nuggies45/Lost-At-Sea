@@ -359,7 +359,7 @@ const scenes = {
     rhythmGameStart:{
         text: () => {
             startRhythmGame();
-            return "You prepare yourself and start strumming";
+            return "You prepare yourself and start strumming(hit A S or D depending on where the note it ex far right is D, middle is S, and far left is A)";
         },
         options:[]
     },
@@ -519,38 +519,70 @@ function updateInventory() {
 
 
 function startRhythmGame(){
-    const container = document.getElementById("rhythm-game-container");
-    container.style.display = "block";
-    container.innerHTML = "<h3>Hit the keys in time! A-S-D</h3>";
+    const gameDiv = document.getElementById("rhythmGame");
+   const gameArea = document.getElementById("gameArea");
+   const resultText = document.getElementById("rhythmResult");
 
-    const sequence = ["A", "S", "D", "A", "D", "S", "D", "A", "S", "D", "A", "S", "A", "D", "A", "S", "D"];
-    let index = 0;
+   gameDiv.style.display = "block"
+   resultText.textContent = "";
 
-    const instructions = document.createElement("p");
-    instructions.textContent = "Press:"+ sequence.join(" ");
-    container.appendChild(instructions);
-    
-    const results = document.createElement("p")
-    container.appendChild(results);
-    
-    function handleKey(e) {
-        if (e.key.toLowerCase() === sequence[index]) {
-            index++;
-            results.textContent = 'Good! ${index}/${sequence.length}';
-            if (index >= sequence.length){
-                doncument.removeEventListener("keydown", handleKey);
-                results.textContent = "Song Complete";
-                setTimeout(() => {
-                    container
-                    showScene("nextScene");
-                }, 2000);
-            }
-            } else {
-                results.textContent = "Oops! Try again!";
-                index = 0;
-            }
-        }
-    document.addEventListener("keydown", handleKey);
+   const keys = ["a", "s", "d"]
+   const timingWindows = [];
+
+   let hitCount = 0;
+   let totalNotes =  20;
+
+   function spawnNote(key){
+    const note = document.createElement("div");
+    note.className = "note";
+    note.style.left = keys.indexOf(key) * 100 + "px";
+   gameArea.appendChild(note);
+  
+   const spawnTime = Date.now()
+   timingWindows.push({key, time: spawnTime +  2800});
+   setTimeout(() => {
+    gameArea.removeChild(note);
+    }, 3000);
+   }
+
+   let delay = 0;
+   for (let i = 0; i < totalNotes; i++){
+        const randKey = keys[Math.floor(Math.random() * keys.length)];
+        setTimeout(() => spawnNote(randKey), delay);
+        delay += 1000;
+   }
+   
+   function keyHandler(e){
+    const now = Date.now();
+    const matchIndex = timingWindows.findIndex(win => 
+        win.key === e.key && Math.abs(win.time - now) <= 300
+    );
+
+    if (matchIndex !== -1) {
+        hitCount++;
+        timingWindows.splice(matchIndex, 1);
+        resultText.textContent = `Nice! Hits: ${hitCount}`;
+        
+    } else {
+        resultText.textContent = 'Miss!';
+    }
+
+    if (hitCount >= totalNotes || (timingWindows.length === 0 && now > delay + 4000)){
+        endGame();
+    }
+   }
+
+   function endGame(){
+    document.removeEventListener("keydown", keyHandler);
+    resultText.textContent = "Game Over!";
+    setTimeout(() => {
+        gameDiv.style.display = "none";
+        showScene("postRhythmScene")
+        }, 3000);
+   }
+
+   document.addEventListener("keydown", keyHandler);
+
 }
 
 showScene("intro");
