@@ -172,7 +172,7 @@ const scenes = {
   offeringCaptain: {
         text: "You hand over the magic shell. The Captain smiles, 'This is the conch! It is said to have the ability to summon the sea gods! I declare you my right hand! This is worth a fortune!'",
         options: [
-            { text: "'Actually give it back I want it for myself!", next: "refusal" },
+            { text: "'Actually give it back I want it for myself!'", next: "refusal" },
             { text: "Smile at the Captain, proud of the upgrade", next: "accept1", consume: "Magic Shell",
                 setChoice: { key: "gaveMagicShell", value: true} 
             },
@@ -190,9 +190,7 @@ const scenes = {
         text: "The Captain listens raising a curious brow, 'A temple? Hm...I guess we won't be needing this sand after all. Lead us to this...temple...I heard its the key to getting home...and making a fat stack of cash.'",
         options: [
             { text: "Refuse, the treasure is yours to keep now", next: "refusal" },
-            { text: "Accept, the pirates are honest you both benefit", next: "accept", consume: "Ancient Temple Location",
-                setChoice: { key: "revealedTemple", value: true } 
-             },
+            { text: "Accept, the pirates are honest you both benefit", next: "accept", consume: "Ancient Temple Location", setChoice: { key: "revealedTemple", value: true } }
         ]
     },
 
@@ -260,15 +258,17 @@ const scenes = {
                 return "The tired crewmember wakes you up, 'Time to get moving, mate. Theres a lot on the agenda.' You stretch and prepare for whatever lies ahead.";
             }
         },
-        options: () => {            
+        options: () => {
+            const opts = [];
             if (state.choices.revealedTemple) {
-                return [{ text: "Set sail to the temple", next: "templeSailing" }];
+                opts.push({ text: "Sail to the temple", next: "templeSail" });
             } else if (state.choices.gaveMagicShell) {
-                return [{ text: "Set sail to riches", next: "dailyChoresRightHand" }];
+                opts.push({ text: "Set sail to riches", next: "dailyChoresRightHand" });
             } else {
-                return [{ text: "Get ready for the day", next: "dailyChoresCrew" }];
+                opts.push({ text: "Get ready for the day", next: "dailyChoresCrew" });
             }
-        },
+            return opts;
+        }
     },
 
 
