@@ -363,6 +363,15 @@ const scenes = {
         },
         options:[]
     },
+
+    postRhythmScene:{
+        text: () => {
+            return "You finish the song the lonely crew mate nods in approval taking his bango back, come back if you ever want to play again! The Captain comes out ready to set sail. 'Alright crew! We are almost there! Get ready for the adventure of a lifetime!'";
+        },
+        options: [
+            { text: "Head back to the main deck", next: "mainDeck" }
+        ]
+    },
     
 
 
@@ -522,15 +531,19 @@ function startRhythmGame(){
     const gameDiv = document.getElementById("rhythmGame");
    const gameArea = document.getElementById("gameArea");
    const resultText = document.getElementById("rhythmResult");
+   const music = document.getElementById("bgMusic");
 
    gameDiv.style.display = "block"
    resultText.textContent = "";
 
-   const keys = ["a", "s", "d"]
+   music.currentTime = 0;
+   music.play();
+
+   const keys = ["a", "s", "d"];
    const timingWindows = [];
 
    let hitCount = 0;
-   let totalNotes =  20;
+   let totalNotes =  30;
 
    function spawnNote(key){
     const note = document.createElement("div");
@@ -556,7 +569,7 @@ function startRhythmGame(){
     const now = Date.now();
     const matchIndex = timingWindows.findIndex(win => 
         win.key === e.key && Math.abs(win.time - now) <= 300
-    );
+    );f
 
     if (matchIndex !== -1) {
         hitCount++;
@@ -575,10 +588,18 @@ function startRhythmGame(){
    function endGame(){
     document.removeEventListener("keydown", keyHandler);
     resultText.textContent = "Game Over!";
+
+    const music = document.getElementById("bgMusic")
+    music.pause();
+    music.currentTime = 0;
+
     setTimeout(() => {
         gameDiv.style.display = "none";
-        showScene("postRhythmScene")
-        }, 3000);
+        setTimeout(() => {
+            showScene("postRhythmScene");
+        }, 100);
+
+    }, 1000);
    }
 
    document.addEventListener("keydown", keyHandler);
