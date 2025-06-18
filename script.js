@@ -177,7 +177,7 @@ const scenes = {
                 setChoice: { key: "gaveMagicShell", value: true} 
             },
         ],
-        inventoryGain: "Right hand badge"
+        inventoryGain: "_Right hand badge"
     },
 
     accept1: {
@@ -199,7 +199,9 @@ const scenes = {
         text: "The Captain nods, 'Good choice! We will have to postpone our trip home and investigate that temple in the morning! In the meantime, head to the main deck, socialize, enjoy the waves!'",
         options: [
             { text: "Bid her farewell and head to the main deck", next: "adventureTime" },
-        ]
+          
+        ],
+        inventoryGain: "_TempleSail"
     },
 
     refusal: {
@@ -262,16 +264,16 @@ const scenes = {
         options: [
             { text: "TEST CHOICE", 
                 next: "templeSail",
-                condition: (state) => state.choices.revealedTemple 
+                condition: "_TempleSail"
             },
             { text: "Set sail to riches",
                 next: "dailyChoresRightHand",
-                condition: "Right hand badge"
+                condition: "_Right hand badge"
             },
 
             { text: "Get ready for the day",
               next: "dailyChoresCrew",
-              
+              condition: (state) => !state.choices.revealedTemple && !state.choices.gaveMagicShell
             }
          ]
         
@@ -421,7 +423,7 @@ function updateInventory() {
     inventoryDiv.innerHTML = "<h3>Inventory</h3>";
     
     for (const item in inventory) {
-        if (inventory[item]) {
+        if (inventory[item] && !item.startsWith("_")) {
             const itemDiv = document.createElement("div");
             itemDiv.textContent = item;
             inventoryDiv.appendChild(itemDiv);
@@ -431,3 +433,54 @@ function updateInventory() {
 
 
 showScene("intro");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
