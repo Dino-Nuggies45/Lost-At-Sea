@@ -170,13 +170,14 @@ const scenes = {
     },
 
   offeringCaptain: {
-        text: "You hand over the magic shell. The Captain smiles, 'This is the conch! It is said to have the ability to summon the sea gods! I declare you my right hand! This is worth a fortune!'",
+        text: "You hand over the magic shell. The Captain smiles, 'This is the conch! It is said to have the ability to summon the sea gods! I declare you my right hand! Of course only if you're willing to give it to me?' The Captain hands you a badge that says 'Right Hand of the Captain'.",
         options: [
             { text: "'Actually give it back I want it for myself!'", next: "refusal" },
             { text: "Smile at the Captain, proud of the upgrade", next: "accept1", consume: "Magic Shell",
                 setChoice: { key: "gaveMagicShell", value: true} 
             },
-        ]
+        ],
+        inventoryGain: "Right hand badge"
     },
 
     accept1: {
@@ -258,17 +259,22 @@ const scenes = {
                 return "The tired crewmember wakes you up, 'Time to get moving, mate. Theres a lot on the agenda.' You stretch and prepare for whatever lies ahead.";
             }
         },
-        options: () => {
-            const opts = [];
-            if (state.choices.revealedTemple) {
-                opts.push({ text: "Sail to the temple", next: "templeSail" });
-            } else if (state.choices.gaveMagicShell) {
-                opts.push({ text: "Set sail to riches", next: "dailyChoresRightHand" });
-            } else {
-                opts.push({ text: "Get ready for the day", next: "dailyChoresCrew" });
+        options: [
+            { text: "TEST CHOICE", 
+                next: "templeSail",
+                condition: (state) => state.choices.revealedTemple 
+            },
+            { text: "Set sail to riches",
+                next: "dailyChoresRightHand",
+                condition: "Right hand badge"
+            },
+
+            { text: "Get ready for the day",
+              next: "dailyChoresCrew",
+              
             }
-            return opts;
-        }
+         ]
+        
     },
 
 
