@@ -262,7 +262,7 @@ const scenes = {
             }
         },
         options: [
-            { text: "TEST CHOICE", 
+            { text: "Head over to the temple", 
                 next: "templeSail",
                 condition: "_TempleSail"
             },
@@ -275,9 +275,95 @@ const scenes = {
               next: "dailyChoresCrew",
               condition: (state) => !state.choices.revealedTemple && !state.choices.gaveMagicShell
             }
-         ]
+        ]
         
     },
+
+    templeSail: {
+        text: "The crew sets sail towards the temple. The ocean is calm, and the sun shines brightly. You feel a sense of excitement and anticipation as you approach the mysterious island. You notice the three crew members from before, who do you want to talk to?(You can only choose one)",
+        options: [
+            { text: "The tired crew member", next: "tiredCrewTemple" },
+            { text: "The excited crew member", next: "excitedCrewTemple" },
+            { text: "The lonely crew member", next: "lonelyCrewTemple" }
+        ]
+    },
+
+    tiredCrewTemple: {
+        text: "You approach the tired crewmember, who is carefully mopping the deck. 'Oh, hey there.' Heard you were the one who gave the Captain the location to this temple. On behalf of the crew, I want to thank you. We have been searching for this place for years.' He pauses, 'I just hope we find what we're looking for and get home soon.'(You can only choose one).",
+        options: [
+            { text: "Ask him about his experiences", next: "tiredCrewTempleTalk" },
+            { text: "Ask about home", next: "tiredCrewTempleHome" },
+        ]
+    },
+
+    tiredCrewTempleHome: {
+        text: "'Home?' The tired crewmember chuckles a little, 'honestly, I've spent so long at sea, I forget what home feels like.' You tilt your head, confused. He beings again, 'Ah...I am always saying that I miss home and now I'm telling you I don't remember it...I guess I mean I miss the feeling of home. Theres some kind of comfort in knowing you have a place to go back to, you know? When all this is over...I hope to find home again, a place where I can rest, no more adventures, no more searching for treasure...just peace.' You nod, understanding the longing for a place to belong. You two talk for a bit longer begore the Captain comes out ready to set sail. 'Alright crew! We are almost there! Get ready for the adventure of a lifetime!'",
+        options: [
+            { text: "Head back to the main deck", next: "mainDeck" }
+        ]
+    },
+
+    tiredCrewTempleTalk: {
+        text: "'My experience? Well, the Captain is my sister. Shes always been adventurous, so when she told me she wanted to sail the seas, I had to join her. I would much rather be at home, but I don't think shes old enough to be on her own...well...thats what I tell myself. Shes shown me shes more than capable of taking care of herself, but I still worry...ah! I didn't mean to ramble on like that...' You nod, you have no recollection of your family, home, or anything before the raft. You feel a strange emptiness, but you push it aside. Adventure awaits. You two talk for a bit longer before the Captain comes out ready to set sail. 'Alright crew! We are almost there! Get ready for the adventure of a lifetime!'",
+        options: [
+            { text: "Head back to the main deck", next: "mainDeck" }
+        ]
+    },
+
+    excitedCrewTemple: {
+        text: "You approach the excited crewmember, who had been busy running around the ship, 'Hey! Rumor has it you're the one who found the temple! How did you find it? You must be the luckiest person alive! HAHA' You notice he is carrying multiple items, from swords to spears to sheilds.(You can only choose one).",
+        options: [
+            { text: "Offer help", next: "helpExcitedCrew" },
+            { text: "Ask him about home", next: "excitedCrewHome" }
+        ]
+    },
+
+    helpExcitedCrew:{
+        text: "You open your arms 'I can help out' He looks a little shocked before handing you a couple weapons, 'Thanks! We're just taking them to the back of the ship. Thats where the stand is for them. We'll be taking them into the island according to the Captain, we don't know whats there.' You and him lug the weapons to the end of the ship talking about anythings that comes to mind. The excited crew member carries most of the conversation, but he still allows you to talk. You both prop the weapons on the stand before hearing the Captain's voice. 'Alright crew! We are almost there! Get ready for the adventure of a lifetime!'",
+        options: [
+            { text: "Head back to the main deck", next: "mainDeck" }
+        ]
+    },
+
+    excitedCrewHome: {
+        text: "'Ah! home sweet home aye? I can't tell you!' He laughs, 'I've spent all my life at sea, but I don't exactly miss the land. The ocean breeze, the salty sea air, and more importantly the crew, this is honestly all I need! Home can be a lot of places and to each their own, but for me the land isnt that. Nobody is crazy out at sea, everybody belongs and the crew here will go out their way to protect their own. I'm more at home here than I am anywhere else...but that just me.' He laughs again. 'I better get back to work!' The Captain comes out ready to set sail. 'Alright crew! We are almost there! Get ready for the adventure of a lifetime!'",
+        options: [
+            { text: "Head back to the main deck", next: "mainDeck" }
+        ]
+    },
+
+    lonelyCrewTemple:{
+        text: "The sweet sound of his bango and his voice fill the air. He looks up at you and nods before going back to his instrument. The waves crash to the beat and he gestures for you to take a seat. Calm and collected he continues to play, no words exchanged, but you can tell his feelings through his song. You watch the waves crash into the ocean, it is serene and peaceful.",
+        options: [
+            { text: "Ask him to play a song from his home", next: "lonelyCrewSong" },
+            { text: "Ask him to teach you how to play", next: "lonelyCrewInstrument" }
+        ]
+    },
+
+    lonelyCrewSong:{
+        text: "He looks over at you, a little surprised by your request. He smiles and nods and begins to play. It is slow, not upbeat like the other songs hes played. 'My mama used to sing to this song. I've long forgotten the words, but I can recite the melody in my sleep. Its a nice song, maybe someday I can remember the lyrics or maybe just create new ones.' You are a bit surprised to hear him speak, but you nod reasurring that you heard him. He beings to play, the melody is calming not what you would expect when you look at him. You feel a strange comfort from the song. You enjoy the moments of silence before the Captain comes out ready to set sail. 'Alright crew! We are almost there! Get ready for the adventure of a lifetime!'",
+        options: [
+            { text: "Play a song from your home", next: "lonelyCrewSong" },
+            { text: "Ask him to teach you how to play", next: "lonelyCrewInstrument" }
+        ]
+    },
+
+    lonelyCrewInstrument:{
+        text: "A small chuckle slips from his lips as he nods, 'Why not?' He hands you the bango and faces you. He pretends to hold the bango in his hands and begins guiding his hands as if they were playing something, 'Since its your first time don't think about messing up, just think about getting through the entire song.' He digs in his pocket and pulls out a sheet of paper with what look like chords. 'Don't worry, just play all of them open chord, it will still be beautiful.'",
+        options: [
+            { text: "Play the song on your own", next: "rhythmGameStart"},
+            {text: "Thank him and move on", next: "postRhythmGame"}
+        ]
+    },
+    
+    rhythmGameStart:{
+        text: () => {
+            startRhythmGame();
+            return "You prepare yourself and start strumming";
+        },
+        options:[]
+    },
+    
 
 
     sandCollected: {
@@ -432,55 +518,39 @@ function updateInventory() {
 }
 
 
+function startRhythmGame(){
+    const container = document.getElementById("rhythm-game-container");
+    container.style.display = "block";
+    container.innerHTML = "<h3>Hit the keys in time! A-S-D</h3>";
+
+    const sequence = ["A", "S", "D", "A", "D", "S", "D", "A", "S", "D", "A", "S", "A", "D", "A", "S", "D"];
+    let index = 0;
+
+    const instructions = document.createElement("p");
+    instructions.textContent = "Press:"+ sequence.join(" ");
+    container.appendChild(instructions);
+    
+    const results = document.createElement("p")
+    container.appendChild(results);
+    
+    function handleKey(e) {
+        if (e.key.toLowerCase() === sequence[index]) {
+            index++;
+            results.textContent = 'Good! ${index}/${sequence.length}';
+            if (index >= sequence.length){
+                doncument.removeEventListener("keydown", handleKey);
+                results.textContent = "Song Complete";
+                setTimeout(() => {
+                    container
+                    showScene("nextScene");
+                }, 2000);
+            }
+            } else {
+                results.textContent = "Oops! Try again!";
+                index = 0;
+            }
+        }
+    document.addEventListener("keydown", handleKey);
+}
+
 showScene("intro");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
