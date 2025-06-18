@@ -532,18 +532,21 @@ function startRhythmGame(){
    const gameArea = document.getElementById("gameArea");
    const resultText = document.getElementById("rhythmResult");
    const music = document.getElementById("bgMusic");
+   const continueButton = document.getElementById("continueButton")
 
    gameDiv.style.display = "block"
    resultText.textContent = "";
-
+   continueButton.style.display = "none";
    music.currentTime = 0;
    music.play();
 
    const keys = ["a", "s", "d"];
+   const beatTimes = [6.59, 9.42, 10.86, 12.31, 15.07, 16.54, 17.88, 19.75, 21.04, 22.12,
+ 23.51, 26.4, 29.18, 31.99, 34.88, 36.22, 37.72, 39.04, 40.51, 41.87];
    const timingWindows = [];
 
    let hitCount = 0;
-   let totalNotes =  30;
+
 
    function spawnNote(key){
     const note = document.createElement("div");
@@ -558,12 +561,10 @@ function startRhythmGame(){
     }, 3000);
    }
 
-   let delay = 0;
-   for (let i = 0; i < totalNotes; i++){
-        const randKey = keys[Math.floor(Math.random() * keys.length)];
-        setTimeout(() => spawnNote(randKey), delay);
-        delay += 1000;
-   }
+  beatTimes.forEach((t) => {
+    const randKey = keys[Math.floor(Math.random() * keys.length)];
+    setTimeout(()=> spawnNote(randKey), t * 1000);
+  });
    
    function keyHandler(e){
     const now = Date.now();
@@ -580,29 +581,22 @@ function startRhythmGame(){
         resultText.textContent = 'Miss!';
     }
 
-    if (hitCount >= totalNotes || (timingWindows.length === 0 && now > delay + 4000)){
-        endGame();
+    if (hitCount >= 10) {
+        continueButton.style.display = "inline-block"
     }
    }
 
    function endGame(){
     document.removeEventListener("keydown", keyHandler);
     resultText.textContent = "Game Over!";
-
-    const music = document.getElementById("bgMusic")
     music.pause();
     music.currentTime = 0;
-
-    setTimeout(() => {
-        gameDiv.style.display = "none";
-        setTimeout(() => {
-            showScene("postRhythmScene");
-        }, 100);
-
-    }, 1000);
+    gameDiv.style.display = "none";
+    showScene("postRhythmScene");
    }
 
-   document.addEventListener("keydown", keyHandler);
+   continueButton.onclick = endGame;
+   document.addEventListener("keydown", keyHandler)
 
 }
 
