@@ -372,8 +372,197 @@ const scenes = {
             { text: "Head back to the main deck", next: "mainDeck" }
         ]
     },
-    
 
+    mainDeck: {
+        text: "Once you finish up with your crew mate you meet at the front of the ship where the Captain looks like shes preparing a speech. She glances over the crowd before giving you a smile 'My comrades today we face the unknown! In this Jungle there are things we may have never experienced but our one goal is to get to the temple and claim the treasure. As you may know there is a terrible storm that we could not pass to get home, these lands hold the key. The temple is OUR key, so grab a weapon, grab a friend, and get ready because this will be our greatest adventure yet! Protect yourselves and your crew. Your captains will be assigned accordingly, follow them and stay safe. HUZZAH' She shouts everyone repeating the motto. People disperse to grab a weapon.",
+        options: [
+            {text: "A Shield", next: "partner", inventoryGain: "Sheild"},
+            {text: "A Sword", next: "partner", inventoryGain: "Sword"},
+            {text: "A Spear", next: "partner", inventoryGain: "Spear"}
+
+        ]
+    },
+    
+    partner: {
+        text: "You look around ready to choose a partner who will you choose?",
+        options: [  
+            { text: "The tired crew member", next: "tiredCrewChosen" },
+            { text: "The excited crew member", next: "excitedCrewChosen" },
+            { text: "The lonely crew member", next: "lonelyCrewChosen" }
+        ]
+
+    },
+
+    tiredCrewChosen: {
+        text: "You look over at the tired crew member he gives you a look of confusion as you ask him to be your partner, 'okay...?' he says cautiously.",
+        options:[
+            {text: "Time to venture into the jungle", next: "adventure", inventoryGain: "_tiredCrewMember"}
+        ]
+    },
+
+
+    excitedCrewChosen: {
+        text: "You head over to the excited crew member asking him to be your partner, 'HAHA silly we were already partners!",
+        options:[
+            {text: "Time to venture into the jungle", next: "adventure", inventoryGain: "_excitedCrewMember"}
+        ]
+    },
+
+    lonelyCrewChosen: {
+        text: "You glance over at the lonely crew member he looks up from his instrument and nods before going back to playing a silent realization that you two are partners",
+        options:[
+            {text: "Time to venture into the jungle", next: "adventure", inventoryGain: "_lonelyCrewMember"}
+        ]
+    },
+
+    adventure: {
+        text: "You and your partner make your way over to the jungle island. The captain pats your shoulder, 'Which way are you and your partner going?' She asks. You look and the paths.",
+        options:[
+            {text: "middle", next: "excitedPath", condition: "_excitedCrewMember"},
+            {text: "right", next: "tiredPath", condition: "_tiredCrewMember"},
+            {text: "left", next: "lonelyPath", condition: "_lonelyCrewMember"}
+        ]
+    },
+
+    tiredPath: {
+        text: "You point at the right path, 'We'll take that path' you say. The tired crew member grabs more food and stashes it in his pocket, 'sure' he says before catching up with you. You both walk through the fog sticking close by each other. It had been silent the whole walk until the tired crew member points at a plant, 'look doesn't that plant look interesting?' You look and see a purple plant almost like a flower sitting in a green bush.",
+        options:[
+            {text: "Pull him back, away from the flower", next: "templeFind"},
+            {text: "Get a closer look at the flower", next: "flower"}
+        ]
+    },
+
+    templeFind:{
+        text:"You shake your head 'We need to keep going.' You assure. The tired crew mate sighs a bit before continuing walking by your side. After another 30 minutes that felt like an hour you come to see a mossy wall. You look up and notice an open window, 'We need to get up there' you turn around to see the tired crew mate with a hook attached to a rope. He throws it and pulls on it. 'You can go first' he nods. You look a bit shocked before you climb in through the window. After you hop down the tired crew mate came not too long after. You look around and the riches and quickly notice a pendant in the middle. You pick it up and as the tired crew member detaches the hook you realize that you can get the jump on him and take everything for youself.",
+        options:[
+            {text: "Betray Him", next: "battle2"},
+            {text: "Tell him about the pendant", next: "endingTwo"},
+        ]
+    },
+
+    flower: {
+        text: "You and the tired crew mate bend down to inspect the flower. The tired crew mate carefully touches the flower. It spews a nice fragrance in your faces. The tired crew mate looks confused, 'Hm...I wonder what that was.' He beings to yawn, 'I'm so sleepy...' You nod as a wave of sleepiness comes over you. The tired crew mate lays down on the grass and begins snoring. There is no harm in going to sleep you think laying your head down as well. You don't wake back up.",
+        options:[
+            {text:"Start Over?", next: "intro"}
+        ]
+    },
+
+    excitedPath:{
+        text: "You point towards the middle path, 'We will be taking that one.' you say. The excited crew member nods in agreement, 'Great choice! We will pave the way for our friends!' The Captain nods, 'Sounds good! You two stay safe...remember protect yourself and your partner' You both nod and proceed into the jungle. You both rush into the forest the excited crew member is running through the forest with no care in the world. Fog begins to draw in closer.",
+        options: [
+            {text: "Tell the excited crew member to slow down", next: "slowDown"},
+            {text: "Run faster to catch up the the excited crew member", next: "runFaster"}
+        ]
+    },
+
+    runFaster:{
+        text: "The fog cuts you off before you can catch up. The fog clouds your vision and fills your lung. You don't make it",
+        options: [
+            {text: "Start Over?", next: "intro"}
+        ]
+    },
+
+    slowDown:{
+     text: "You yell at your partner to slow down as you hurridly catch up. The fog completely encases you both but at least you are together. He looks over at you, 'Gosh..I'm glad I stopped I would've lost you, thank you!' You nod and notice him striking rocks before a flame starts to emit from a branch it seems he picked up. You grab onto his belt as he guides you with his makeshift torch. You both notice a fork in the road. On the right you notice a weird looking man, he looks old almost like a wanderer and on the left is a dog.",
+        options:[
+            {text: "Go to the right", next: "wizard"},
+            {text: "Go to the left", next: "dog"}
+        ]
+    },
+
+    dog: {
+        text: "You and the excited crewmate follow the dog, it leads you down a path, after a while the fire goes out. Growling emerges from the shadows...You become dogfood",
+        options:[
+            {text: "Start Over?", next: "intro" },
+        ]
+    },
+
+    wizard: {
+        text:"You cautiously approach the old man. As you approach he begins to talk, 'What is always coming, but never arrives?' he starts. The excited crew member whispers, 'the Captain used to say this, she says its sleep' You analyze the question, should you just take your crewmates word for it?",
+        options:[
+            {text: "sleep", next: "wizardDeath"},
+            {text: "tomorrow", next: "correctAnswer1"}
+        ]
+    },
+
+    correctAnswer1: {
+        text: "The wizards walks more before stopping in his tracks again. You and the excited crew member stop in your tracks once again. 'What comes down but never goes up?' he starts. The excited crew member whispers, 'Oh Oh I know! Its rain!' You analyze the question, should you just take your crewmates word for it?",
+        options:[
+            {text: "Rain", next: "correctAnswer2"},
+            {text: "Gravity", next: "wizardDeath"}
+        ]
+    },
+
+    correctAnswer2: {
+        text: "The wizards walks more before stopping in his tracks again. You and the excited crew member stop in your tracks once again. 'The more you take, the more you leave behind, what am I?' he starts. The excited crew member whispers, 'I can't help you with this one...not even I know' You analyze the question, should you just take your crewmates word for it?",
+        options:[
+            {text: "Footsteps", next: "correctAnswer3"},
+            {text: "Glitter", next: "wizardDeath"}
+        ]
+    },
+
+    correctAnswer3: {
+        text: "The wizard smiles and turns around. He begins walking. You look at the excited crew mate, 'Huh...I guess it is footsteps' he laughs a little before dragging you to follow him. You follow the wizard until the fog starts to cave in covering the wizards path. You both press on, the torch lighting the way. As the fog disapates you notice the temple. You let go of the excited crew member as you both stare in awe at the temple. 'This is...the temple.' He says shocked. You push on the door not strong enough to open it. The excited crew member helps you out by ramming into the door which makes it fly open. Gold fills your vision and you begin and the excited crew member stare. He quickly begins looking around, 'WHOA this is enough to buy the whole country back at home!' he exclaims. You make your way to the center, it has a pendant, 'is this...the way back home?' You turn around, the excited crew member basically bouncing off the walls in excitement. You could keep all the treasure for yourself, nobody has to know...only if you take care of him...",
+        options:[
+            {text: "Betray Him", next: "battle"},
+            {text: "Tell him about the pendant", next: "endingTwo"},
+        ]
+    },
+
+    endingTwo: {
+        text: "You show the pendant to your partner. 'Huh this is our way out?' You nod, 'How are we supposed to get it to the rest of the crew?' You ask. Suddenly the doors fly open. The rest of the crew crashes in. The Captain points, 'IT WAS SO SCARY OUT THERE!' She yells. She notices the temple and the pendant in your hand, 'is that...oh goodness please say it is.' You nod, 'Its the way home' The crew stands up wiping their pants. 'Home...EVERYONE ITS TIME TO GO HOME!' The captain yells. She rushes over and raises it high, 'Me and everyone in here would like to go home! With all the riches in the temple!' The light glows and encapses the crew you hear everyone cheering and celebrating before the light encases your vision.",
+        options:[
+            {text: "Start Over?", next: "intro"},
+        ]
+    },
+
+    battle: {
+        text:"You look over at him and unsheath your weapon. The excited crew member looks over at you, 'Hey there mate...what are you doing?' You begin to approach him...",
+        options:[
+            {text: "Charge at him with your sheild", next: "lose", condition: "Sheild"},
+            {text: "lunge at him with your sword", next: "win", condition: "Sword"},
+            {text: "Create distance with your Spear", next: "win", condition: "Spear"}
+        ]
+    },
+
+    battle2: {
+        text:"You look over at him and unsheath your weapon. The tired crew mate looks over at you, 'Hey there mate...what are you doing?' You begin to approach him...",
+        options:[
+            {text: "Charge at him with your sheild", next: "win", condition: "Sheild"},
+            {text: "lunge at him with your sword", next: "lose", condition: "Sword"},
+            {text: "Create distance with your Spear", next: "win", condition: "Spear"}
+        ]
+    },
+
+    battle3: {
+        text:"You look over at him and unsheath your weapon. The lonely crew member looks over at you, 'Hey there mate...what are you doing?' You begin to approach him...",
+        options:[
+            {text: "Charge at him with your sheild", next: "win", condition: "Sheild"},
+            {text: "lunge at him with your sword", next: "lose", condition: "Sword"},
+            {text: "Create distance with your Spear", next: "lose", condition: "Spear"}
+        ]
+    },
+    
+    win: {
+        text: "You and your partner begin the fight. You end up gaining the advantage and charge at him. You shove him into the pile of riches that is now yours. Your partner looks at you fearful. You raise your weapon, no remorse, no regret. You pull the body aside and look into the pendant, 'Would you like to go home?' The pendant asks. You look at the body and the back at the riches, 'Yes me and everything in here would like to go home.'",
+        options:[
+            {text: "Start Over?", next: "intro"},
+        ]
+    },
+
+    lose: {
+        text: "You and your partner begin the fight. You struggle, losing footing, before falling in the riches. Your partner raises their weapon with a look of despair. You close your eyes, you made the bed and now you must lie in it. A regretful whisper, 'I'm sorry...' ",       
+        options:[
+            {text: "Start Over?", next: "intro"},
+        ]
+    },
+
+    wizardDeath: {
+        text:"The wizard shakes his head, 'not even close' he whispers. You see him disappear and the fog starts to close in, you cannot move and for the first time the usual smile on the excited crew member's face disappears and nothing but pure fear emerges. The fog clouds your vision...you lose. ",
+        options:[
+            {text: "Start Over", next: "intro"},
+        ]
+    },
 
     sandCollected: {
         text: "You bottle some glowing sand. It hums faintly in your hand before you stash it away.",
