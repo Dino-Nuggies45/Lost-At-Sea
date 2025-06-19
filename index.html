@@ -7,14 +7,8 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div id="game-container">
-        <h1>Lost at Sea</h1>
-        <div id="text"></div>
-        <div id="scene" class="scene-box"></div>
-        <div id="options" class="button-box"></div>
-        <div id="inventory" class="inventory-box"></div>
-    
-        <div id="homeScreen" style="background-image: url('20250618_2044_Serene Pixel Sea_simple_compose_01jy34jbafebrssd32g4f24csh.png'); background-size: cover; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
+<body onload="showHomeScreen()"></body>
+     <div id="homeScreen" style="background-image: url('20250618_2044_Serene Pixel Sea_simple_compose_01jy34jbafebrssd32g4f24csh.png'); background-size: cover; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
             <h1 style="color: white; font-size: 3em;">Lost at Sea</h1>
             <button onclick="goToSaveMenu()">Continue</button>
             <button onclick="startNewGame()">New Game</button>
@@ -25,7 +19,12 @@
         <div id="saveSlots"></div>
         </div>
 
-
+    <div id="game-container">
+        <h1>Lost at Sea</h1>
+        <div id="text"></div>
+        <div id="scene" class="scene-box"></div>
+        <div id="options" class="button-box"></div>
+        <div id="inventory" class="inventory-box"></div>
         <div id="rhythmGame" style="display: none;">
             <div id="gameArea"></div>
             <p id="rhythmResult"></p>

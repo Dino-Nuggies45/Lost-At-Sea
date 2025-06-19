@@ -1020,6 +1020,22 @@ function fadeToScene(sceneId){
     }, 1000);
 }
 
+function showHomeScreen(){
+    document.getElementById("homeScreen").style.display = "flex";
+    document.getElementById("game-container").style.display = "none";
+}
+
+function goToSaveMenu(){
+    document.getElementById("homeScreen").style.display = "none";
+    document.getElementById("saveMenu").style.display = "block";
+}
+
+function startNewGame(){
+    document.getElementById("homeScreen").style.display = "none";
+    document.getElementById("game-container").style.display = "block";
+    showScene("intro")
+}
+
 function startRhythmGame(){
     const gameDiv = document.getElementById("rhythmGame");
    const gameArea = document.getElementById("gameArea");
