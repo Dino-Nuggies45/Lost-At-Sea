@@ -962,9 +962,63 @@ function updateInventory() {
     }
 }
 
+function showHomeScreen() {
+    document.body.innerHTML = `
+        <div id="homeScreen" class="home-screen">
+            <h1 class="title" style="color: white;">Lost at Sea</h1>
+            <button id="newGameBtn" class="menu-btn">New Game</button>
+            <button id="loadGameBtn" class="menu-btn">Load Game</button>
+            <button id="clearSaveBtn" class="menu-btn">Clear Save</button>
+        </div>
+        <div id="game-container">
+            <div id="text"></div>
+            <div id="scene" class="scene-box"></div>
+            <div id="options" class="button-box"></div>
+            <div id="inventory" class="inventory-box"></div>
+            <div id="rhythmGame" style="display: none;">
+                <div id="gameArea"></div>
+                <p id="rhythmResult"></p>
+                <button id="continueButton" style="display:none;">Continue</button>
+                <audio id="bgMusic" src="bango.mp3" preload="auto"></audio>
+            </div>
+        </div>
+    `;
+
+    document.getElementById("newGameBtn").onclick = startNewGame;
+    document.getElementById("loadGameBtn").onclick = loadGame;
+    document.getElementById("clearSaveBtn").onclick = clearSave;
+}
+
+
+function startNewGame() {
+    document.getElementById("homeScreen").style.display = "none";
+    const gameContainer = document.getElementById("game-container");
+    gameContainer.style.display = "block";
+    fadeToScene("intro");
+}
+
+
+function fadeToScene(sceneId) {
+    const scene = document.getElementById("scene");
+    if (!scene) {
+        showScene(sceneId);
+        return;
+    }
+
+    scene.classList.remove("fade-in");
+    scene.classList.add("fade-out");
+
+    setTimeout(() => {
+        showScene(sceneId);
+        scene.classList.remove("fade-out");
+        scene.classList.add("fade-in");
+    }, 500);
+}
+
+
 function getSaveData() {
     return {
-        currentScene: currentScene,
+        currentScene,
         inventory: {...inventory},
         state: {
             completedScenes: {...state.completedScenes},
@@ -973,67 +1027,75 @@ function getSaveData() {
     };
 }
 
-function loadSaveData(data){
+function loadSaveData(data) {
     currentScene = data.currentScene;
     inventory = {...data.inventory};
     state.completedScenes = {...data.state.completedScenes};
     state.choices = {...data.state.choices};
     updateInventory();
-    showScene(currentScene);
+    fadeToScene(currentScene);
 }
 
-function loadGame(){
+function loadGame() {
     const saveData = localStorage.getItem("lostAtSeaSave");
-    if(saveData){
+    if (saveData) {
         const parsedData = JSON.parse(saveData);
         loadSaveData(parsedData);
+        document.getElementById("homeScreen").style.display = "none";
+        document.getElementById("game-container").style.display = "block";
     } else {
         alert("No saved game found");
     }
 }
 
-function clearSave(){
+function clearSave() {
     localStorage.removeItem("lostAtSeaSave");
     alert("Save data cleared.");
 }
 
+
+
 function showHomeScreen() {
-    const gameContainer = document.getElementById("game-container");
-    gameContainer.innerHTML = `
-        <div id="homeScreen" class="home-screen">
-            <h1>Lost at Sea</h1>
-            <button onclick="startNewGame()">New Game</button>
-            <button onclick="loadGame()">Load Game</button>
-            <button onclick="clearSave()">Clear Save</button>
+    document.body.innerHTML = `
+        <div id="homeScreen" class="home-screen" style="background-image: url('20250618_2044_Serene Pixel Sea_simple_compose_01jy34jbafebrssd32g4f24csh.png'); background-size: cover; background-position: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <h1 class="title">Lost at Sea</h1>
+            <button id="newGameBtn" class="menu-btn">New Game</button>
+            <button id="loadGameBtn" class="menu-btn">Load Game</button>
+            <button id="clearSaveBtn" class="menu-btn">Clear Save</button>
+        </div>
+        <div id="game-container" style="display: none;">
+            <!-- Your original game-container HTML goes here or is injected on load -->
         </div>
     `;
+
     
+    document.getElementById("newGameBtn").onclick = startNewGame;
+    document.getElementById("loadGameBtn").onclick = loadGame;
+    document.getElementById("clearSaveBtn").onclick = clearSave;
 }
 
-function fadeToScene(sceneId){
-    const scene = document.getElementById("scene");
-    scene.classList.remove("show");
-    setTimeout(() => {
-        showScene(sceneId);
-        scene.classList.add("show");
-
-    }, 1000);
-}
-
-function showHomeScreen(){
-    document.getElementById("homeScreen").style.display = "flex";
-    document.getElementById("game-container").style.display = "none";
-}
-
-function goToSaveMenu(){
-    document.getElementById("homeScreen").style.display = "none";
-    document.getElementById("saveMenu").style.display = "block";
-}
-
-function startNewGame(){
+function startNewGame() {
     document.getElementById("homeScreen").style.display = "none";
     document.getElementById("game-container").style.display = "block";
-    showScene("intro")
+    fadeToScene("intro");
+}
+
+
+function fadeToScene(sceneId) {
+    const scene = document.getElementById("scene");
+    if (!scene) {
+        showScene(sceneId);
+        return;
+    }
+
+    scene.classList.remove("fade-in");
+    scene.classList.add("fade-out");
+
+    setTimeout(() => {
+        showScene(sceneId);
+        scene.classList.remove("fade-out");
+        scene.classList.add("fade-in");
+    }, 500); 
 }
 
 function startRhythmGame(){
