@@ -24,15 +24,19 @@
 
     <div id="game-container" style="display: none;">
         <div id="text"></div>
-        <div id="scene" class="scene-box"></div>
-        <div id="options" class="button-box"></div>
+        <div id="storyBox">
+            <div id="scene" class="scene-box"></div>
+            <div id="options" class="button-box"></div>
+        </div>
         <div id="inventory" class="inventory-box"></div>
+        <div id="popup" class="popup-toast">✔ Game Saved!</div>
         <div id="rhythmGame" style="display: none;">
             <div id="gameArea"></div>
             <p id="rhythmResult"></p>
             <button id="continueButton" style="display:none;">Continue</button>
             <audio id="bgMusic" src="bango.mp3" preload="auto"></audio>
         </div>
+        <button id="saveExitBtn" class="save-exit-btn">Save & Exit</button>
     </div>
 
     <script src="script.js"></script>

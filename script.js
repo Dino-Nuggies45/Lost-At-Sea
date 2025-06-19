@@ -877,11 +877,10 @@ const scenes = {
     },
 
     endingOne: {
-        text: "Inside the temple, you find a glowing crystal. As you touch it, visions of the way home flood your mind. You Win!",
+        text: "You attempt to push the doors to the temple open however you are not strong enough, you must come back with someone in order to open it.",
         options: [
-            { text: "Play Again", next: "intro" }
+            { text: "Run back to the raft", next: "intro" }
         ],
-        reset: true
     }
 };
 
@@ -963,6 +962,26 @@ function updateInventory() {
 }
 
 function showHomeScreen() {
+     document.body.innerHTML = `
+        <div id="homeScreen" class="home-screen">
+            <h1 class="title" style="color: white; font-size: 3em; text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">Lost at Sea</h1>
+            <button id="newGameBtn" class="menu-btn">New Game</button>
+            <button id="loadGameBtn" class="menu-btn">Load Game</button>
+            <button id="clearSaveBtn" class="menu-btn">Clear Save</button>
+        </div>
+        <div id="game-container" style="display: none;">
+            <div id="text"></div>
+            <div id="scene" class="scene-box"></div>
+            <div id="options" class="button-box"></div>
+            <div id="inventory" class="inventory-box"></div>
+            <div id="rhythmGame" style="display: none;">
+                <div id="gameArea"></div>
+                <p id="rhythmResult"></p>
+                <button id="continueButton" style="display:none;">Continue</button>
+                <audio id="bgMusic" src="bango.mp3" preload="auto"></audio>
+            </div>
+        </div>
+    `;
    document.getElementById("homeScreen").style.display = "flex";
    document.getElementById("game-container").style.display = "none";
 
@@ -973,8 +992,8 @@ function showHomeScreen() {
 
 
 function startNewGame() {
+    document.getElementById("game-container").style.display = "flex";
     document.getElementById("homeScreen").style.display = "none";
-  document.getElementById("game-container").style.display = "flex";
     fadeToScene("intro");
 }
 
@@ -1039,6 +1058,27 @@ function startNewGame() {
     document.getElementById("homeScreen").style.display = "none";
     document.getElementById("game-container").style.display = "block";
     fadeToScene("intro");
+
+     const saveBtn = document.getElementById("saveExitBtn");
+    if (saveBtn) {
+        saveBtn.onclick = () => {
+            localStorage.setItem("lostAtSeaSave", JSON.stringify(getSaveData()));
+            showPopup("✔ Game saved!");
+            showHomeScreen();
+        };
+    }
+}
+
+function showPopup(message) {
+    const popup = document.getElementById("popup");
+    if (!popup) return;
+
+    popup.textContent = message;
+    popup.classList.add("show");
+
+    setTimeout(() => {
+        popup.classList.remove("show");
+    }, 2000);
 }
 
 
@@ -1058,6 +1098,17 @@ function fadeToScene(sceneId) {
         scene.classList.add("fade-in");
     }, 500); 
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("saveExitBtn");
+    if (btn) {
+        btn.onclick = () => {
+            localStorage.setItem("lostAtSeaSave", JSON.stringify(getSaveData()));
+            showHomeScreen();
+        };
+    }
+});
+
 
 function startRhythmGame(){
     const gameDiv = document.getElementById("rhythmGame");
