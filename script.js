@@ -279,6 +279,253 @@ const scenes = {
         
     },
 
+
+
+    dailyChoresCrews: {
+        text: "You and the Captain head towards the front of the ship. As the ship starts to move you notice a storm ahead, 'Has that storm always been there?' You question. The Captain nods, 'In all my years I've never experienced a storm as bad as that one. When we've attemped to battle it we just get pushed back here but this time its different...we have you now. Although we are missing the shell which would get us out this mess quicker...but thats besides the point, it is time ONWARD' Are you ready?",
+        options: [
+            {text: "Yes", next: "stormStart"}
+        ]
+    },
+
+    stormStart: {
+        text: "You tighten the sails and brace for impact. With no shell to guide you, it’s up to your wits and unity.",
+        options: [
+            { text: "Rally the crew with a speech", next: "rallyCrew" },
+            { text: "Go silent and take the helm yourself", next: "silentLeadership" }
+        ]
+    },
+
+    rallyCrew: {
+        text: "'This storm won’t break us!' you shout. The crew cheers and readies themselves.",
+        options: [
+            { text: "Assign roles carefully", next: "assignRoles" },
+            { text: "Let the crew choose their tasks", next: "crewChoiceChaos" }
+        ]
+    },
+
+    silentLeadership: {
+        text: "You wordlessly grab the wheel and push forward, hoping your actions speak louder.",
+        options: [
+            { text: "Order everyone below deck", next: "belowDeck" },
+            { text: "Keep everyone on deck to fight", next: "fightTogether" }
+        ]
+    },
+
+    assignRoles: {
+        text: "Everyone knows what to do. The ship runs like clockwork through the chaos.",
+        options: [
+            { text: "Focus on defense", next: "minimalDamage" },
+            { text: "Attack the storm head-on", next: "stormStrike" }
+        ]
+    },
+
+    crewChoiceChaos: {
+        text: "Without direction, chaos erupts. The crew panics.",
+        options: [
+            { text: "Try to regain control", next: "tooLate" },
+            { text: "Abandon ship", next: "shipwrecked" }
+        ]
+    },
+
+    belowDeck: {
+        text: "Your call protects the crew but risks the ship. A huge wave crashes over you.",
+        options: [
+            { text: "Brace and ride it out", next: "surviveCrash" },
+            { text: "Call for help from the spirits", next: "stormSpirits" }
+        ]
+    },
+
+    fightTogether: {
+        text: "Side by side, the crew fights the storm. You grow stronger as one.",
+        options: [
+            { text: "Push for the storm's center", next: "finalPush" },
+            { text: "Try to ride the storm’s edge", next: "stormEdge" }
+        ]
+    },
+
+    minimalDamage: {
+        text: "Your planning pays off. The ship sustains only minor damage. You reach the harbor safely.",
+        options: [
+            { text: "Return home", next: "endingGood" }
+        ]
+    },
+
+    stormStrike: {
+        text: "You strike into the storm... and it splits before you. You've earned the sea’s respect.",
+        options: [
+            { text: "Settle as Captain of these waters", next: "endingAltNewLife" }
+        ]
+    },
+
+    tooLate: {
+        text: "Your crew can’t recover in time. The ship is lost to the sea.",
+        options: [
+            { text: "Restart your journey", next: "intro" }
+        ]
+    },
+
+    shipwrecked: {
+        text: "You leap too soon. The sea swallows you.",
+        options: [
+            { text: "Restart your journey", next: "intro" }
+        ]
+    },
+
+    surviveCrash: {
+        text: "You survive, barely. The crew sees your scars as proof of leadership.",
+        options: [
+            { text: "Retire and start a quiet life", next: "endingNeutral" }
+        ]
+    },
+
+    stormSpirits: {
+        text: "The spirits answer and lift your ship above the waves.",
+        options: [
+            { text: "Thank them and journey on", next: "endingGood" }
+        ]
+    },
+
+    finalPush: {
+        text: "The center of the storm reveals treasure and tranquility. You’ve earned it.",
+        options: [
+            { text: "Live here with the crew", next: "endingAltNewLife" },
+            { text: "Sail home victorious", next: "endingGood" }
+        ]
+    },
+
+    stormEdge: {
+        text: "You misjudge the edge and are pulled under.",
+        options: [
+            { text: "Restart your journey", next: "intro" }
+        ]
+    },
+
+    dailyChoresRightHand: {
+        text: "You and the Captain head towards the front of the ship. As the ship starts to move you notice a storm ahead, 'Has that storm always been there?' You question. The Captain nods, 'In all my years I've never experienced a storm as bad as that one. When we've attemped to battle it we just get pushed back here but this time its different...we have the shell now.' Are you ready?",
+        options: [
+            {text: "Yes", next: "shellStart"}
+        ]
+    },
+
+        shellStart: {
+    text: "You hand the magic shell to the Captain. She holds it high and chants something under her breath. The sky trembles, and the storm seems to part slightly in the distance.",
+    options: [
+        { text: "Suggest steering directly into the parting clouds", next: "directPath" },
+        { text: "Wait a moment to observe the storm's reaction", next: "observeFirst" }
+    ]
+    },
+
+    directPath: {
+        text: "You urge the crew to move now, hoping the shell’s power lasts. The ship lurches forward into the eye of the storm.",
+        options: [
+            { text: "Hold the shell aloft and concentrate", next: "concentrationTest" },
+            { text: "Trust the shell and focus on steering", next: "focusSteering" }
+        ]
+    },
+
+    observeFirst: {
+        text: "You ask the Captain to wait and study the shell’s energy. The shell begins pulsing in rhythm with the thunder.",
+        options: [
+            { text: "Try to match the ship’s course to the pulse", next: "pulseCourse" },
+            { text: "Use this moment to call out to the sea", next: "callSea" }
+        ]
+    },
+
+    concentrationTest: {
+        text: "You grip the shell tightly. A voice echoes in your mind, 'Balance or perish.'",
+        options: [
+            { text: "Focus on harmony between shell and sea", next: "balanceAchieved" },
+            { text: "Try to control the storm forcefully", next: "controlFails" }
+        ]
+    },
+
+    focusSteering: {
+        text: "You leave the shell to the Captain and focus on guiding the ship through lightning-lit waters.",
+        options: [
+            { text: "Speed up to escape faster", next: "speedTooFast" },
+            { text: "Stay the course steadily", next: "steadyWins" }
+        ]
+    },
+
+    pulseCourse: {
+        text: "You adjust the course in sync with the shell’s pulses. The storm begins to hum in harmony.",
+        options: [
+            { text: "Continue syncing with the rhythm", next: "safePassage" },
+            { text: "Break the pattern and rush ahead", next: "breakHarmony" }
+        ]
+    },
+
+    callSea: {
+        text: "You call to the sea with your heart. A spectral whale appears and guides your ship gently forward.",
+        options: [
+            { text: "Follow the whale closely", next: "followWhale" },
+            { text: "Try to overtake it", next: "disrespectSea" }
+        ]
+    },
+
+    // Endings
+
+    balanceAchieved: {
+        text: "The shell glows bright. The storm calms. You've guided your crew to safety with balance and care.",
+        options: [
+            { text: "Return home with honor", next: "endingGood" },
+            { text: "Stay and explore the calm seas", next: "endingNeutral" }
+        ]
+    },
+
+    controlFails: {
+        text: "The shell cracks. The storm engulfs the ship. You lose control as the sea takes everything.",
+        options: [
+            { text: "Restart your journey", next: "intro" }
+        ]
+    },
+
+    speedTooFast: {
+        text: "Your speed causes the ship to lose balance and crash against hidden rocks.",
+        options: [
+            { text: "Restart your journey", next: "intro" }
+        ]
+    },
+
+    steadyWins: {
+        text: "Despite chaos around you, your calm decisions bring the crew safely through the storm.",
+        options: [
+            { text: "Celebrate with the crew", next: "endingGood" }
+        ]
+    },
+
+    safePassage: {
+        text: "The pulse leads you to a hidden bay. You're safe, and the crew praises your instincts.",
+        options: [
+            { text: "Head home with treasures", next: "endingGood" }
+        ]
+    },
+
+    breakHarmony: {
+        text: "Breaking the rhythm angers the sea. A wave capsizes the ship.",
+        options: [
+            { text: "Restart your journey", next: "intro" }
+        ]
+    },
+
+    followWhale: {
+        text: "The whale leads you to a secret island filled with peace and promise.",
+        options: [
+            { text: "Start a new life here", next: "endingAltNewLife" },
+            { text: "Return and tell the tale", next: "endingGood" }
+        ]
+    },
+
+    disrespectSea: {
+        text: "You try to overtake the whale. It vanishes, and the sea punishes your arrogance.",
+        options: [
+            { text: "Restart your journey", next: "intro" }
+        ]
+    },
+
+
+
     templeSail: {
         text: "The crew sets sail towards the temple. The ocean is calm, and the sun shines brightly. You feel a sense of excitement and anticipation as you approach the mysterious island. You notice the three crew members from before, who do you want to talk to?(You can only choose one)",
         options: [
@@ -715,6 +962,53 @@ function updateInventory() {
     }
 }
 
+function getSaveData() {
+    return {
+        currentScene: currentScene,
+        inventory: {...inventory},
+        state: {
+            completedScenes: {...state.completedScenes},
+            choices: {...state.choices}
+        }
+    };
+}
+
+function loadSaveData(data){
+    currentScene = data.currentScene;
+    inventory = {...data.inventory};
+    state.completedScenes = {...data.state.completedScenes};
+    state.choices = {...data.state.choices};
+    updateInventory();
+    showScene(currentScene);
+}
+
+function loadGame(){
+    const saveData = localStorage.getItem("lostAtSeaSave");
+    if(saveData){
+        const parsedData = JSON.parse(saveData);
+        loadSaveData(parsedData);
+    } else {
+        alert("No saved game found");
+    }
+}
+
+function clearSave(){
+    localStorage.removeItem("lostAtSeaSave");
+    alert("Save data cleared.");
+}
+
+function showHomeScreen() {
+    const gameContainer = document.getElementById("game-container");
+    gameContainer.innerHTML = `
+        <div id="homeScreen" class="home-screen">
+            <h1>Lost at Sea</h1>
+            <button onclick="startNewGame()">New Game</button>
+            <button onclick="loadGame()">Load Game</button>
+            <button onclick="clearSave()">Clear Save</button>
+        </div>
+    `;
+    
+}
 
 function startRhythmGame(){
     const gameDiv = document.getElementById("rhythmGame");
