@@ -1010,6 +1010,16 @@ function showHomeScreen() {
     
 }
 
+function fadeToScene(sceneId){
+    const scene = document.getElementById("scene");
+    scene.classList.remove("show");
+    setTimeout(() => {
+        showScene(sceneId);
+        scene.classList.add("show");
+
+    }, 1000);
+}
+
 function startRhythmGame(){
     const gameDiv = document.getElementById("rhythmGame");
    const gameArea = document.getElementById("gameArea");

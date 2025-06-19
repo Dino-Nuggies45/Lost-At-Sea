@@ -75,4 +75,13 @@ body {
     0% {opacity: 1; transform: scale(1); }
     50% {opacity: 0.7; transform: scale(1.1); }
     100% {opacity: 1; transform: scale(1); }
-  }
+}
+
+.fade{
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.fade.show{
+    opacity: 1;
+}
