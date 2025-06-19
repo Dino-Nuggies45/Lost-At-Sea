@@ -281,7 +281,7 @@ const scenes = {
 
 
 
-    dailyChoresCrews: {
+    dailyChoresCrew: {
         text: "You and the Captain head towards the front of the ship. As the ship starts to move you notice a storm ahead, 'Has that storm always been there?' You question. The Captain nods, 'In all my years I've never experienced a storm as bad as that one. When we've attemped to battle it we just get pushed back here but this time its different...we have you now. Although we are missing the shell which would get us out this mess quicker...but thats besides the point, it is time ONWARD' Are you ready?",
         options: [
             {text: "Yes", next: "stormStart"}
@@ -389,8 +389,22 @@ const scenes = {
     finalPush: {
         text: "The center of the storm reveals treasure and tranquility. You’ve earned it.",
         options: [
-            { text: "Live here with the crew", next: "endingAltNewLife" },
-            { text: "Sail home victorious", next: "endingGood" }
+            { text: "Live here with the crew", next: "endingAltNewLife1" },
+            { text: "Sail home victorious", next: "endingGood1" }
+        ]
+    },
+
+    endingAltNewLife1:{
+        text:"The captain looks at you and smiles 'Welcome to the crew!'",
+        options: [
+            { text: "Restart your journey", next: "intro" }
+        ]
+    },
+
+    endingGood1:{
+        text:"You and the crew finally dock at the destination. As you unboard the ship you look towards the crew and then back at the city. Your time with them was short lived, but it was worth every second.",
+        options: [
+            { text: "Restart your journey", next: "intro" }
         ]
     },
 
@@ -408,9 +422,9 @@ const scenes = {
         ]
     },
 
-        shellStart: {
-    text: "You hand the magic shell to the Captain. She holds it high and chants something under her breath. The sky trembles, and the storm seems to part slightly in the distance.",
-    options: [
+    shellStart: {
+        text: "You hand the magic shell to the Captain. She holds it high and chants something under her breath. The sky trembles, and the storm seems to part slightly in the distance.",
+        options: [
         { text: "Suggest steering directly into the parting clouds", next: "directPath" },
         { text: "Wait a moment to observe the storm's reaction", next: "observeFirst" }
     ]
@@ -464,7 +478,6 @@ const scenes = {
         ]
     },
 
-    // Endings
 
     balanceAchieved: {
         text: "The shell glows bright. The storm calms. You've guided your crew to safety with balance and care.",
@@ -524,6 +537,19 @@ const scenes = {
         ]
     },
 
+    endingAltNewLife:{
+        text:"You start a new",
+        options: [
+            { text: "Restart your journey", next: "intro" }
+        ]
+    },
+
+    endingAltNewLife:{
+        text:"You return to the ship ready to tell the tale",
+        options: [
+            { text: "Restart your journey", next: "intro" }
+        ]
+    },
 
 
     templeSail: {
@@ -605,8 +631,8 @@ const scenes = {
     
     rhythmGameStart:{
         text: () => {
-            startRhythmGame();
-            return "You prepare yourself and start strumming(hit A S or D depending on where the note it ex far right is D, middle is S, and far left is A)";
+            setTimeout(startRhythmGame, 100);
+            return "You prepare yourself and start strumming(hit A S or D depending on where the note is: far right is D, middle is S, and far left is A)";
         },
         options:[]
     },
@@ -670,6 +696,53 @@ const scenes = {
             {text: "left", next: "lonelyPath", condition: "_lonelyCrewMember"}
         ]
     },
+
+    lonelyPath: {
+        text: "You point at the left path, 'We'll go that way,' you say. The lonely crew member nods quietly, his banjo slung over his shoulder. 'Mama used to play tunes like these...' he mutters softly. You both walk deeper into the woods, where shadows grow longer and the air feels heavier. Soon, you notice the ground is covered in soft moss, but it’s oddly quiet—too quiet. A faint rustling sounds nearby, but you can’t see anything.",
+        options: [
+            { text: "Call out softly to see if anything responds", next: "quietRustle" },
+            { text: "Press forward cautiously without a sound", next: "mossPath" }
+        ]
+    },
+
+    quietRustle: {
+        text: "You whisper into the silence, and suddenly a small group of glowing fireflies emerge, dancing through the air. The lonely crew member smiles faintly, plucking a gentle chord on his banjo that seems to calm the forest itself. You both relax a bit and continue on, following the trail as it winds through tall ancient trees.",
+        options: [
+            { text: "Follow the fireflies", next: "templeEntrance" },
+            { text: "Ignore them and keep going on the path", next: "mossPath" }
+        ]
+    },
+
+    mossPath: {
+        text: "You move forward quietly, stepping carefully on the soft moss that cushions your steps. Suddenly, the ground shifts beneath your feet, revealing a hidden pit covered by leaves and branches. You quickly grab the lonely crew member's arm to stop him from stepping in. He nods, breathless. 'Almost lost my footing there... Mama always warned me about hidden traps,' he says. You carefully navigate around it and soon see something glimmering between the trees ahead.",
+        options: [
+            { text: "Investigate the glimmer", next: "templeEntrance" },
+            { text: "Avoid the glimmer and keep walking", next: "templeEntrance" }
+        ]
+    },
+
+    templeEntrance: {
+        text: "The path opens to a moss-covered stone wall with a narrow crevice. Vines hang low, and you spot faint carvings of music notes and banjo strings etched into the stone. The lonely crew member looks at the carvings and softly plays a note on his banjo. To your surprise, the stone wall rumbles and slowly slides aside, revealing a hidden passage leading into the temple.",
+        options: [
+            { text: "Enter the temple passage", next: "templeInside" }
+        ]
+    },
+
+    templeInside: {
+        text: "Inside the temple, the air is cool and thick with ancient dust. Faint light filters through cracks above, illuminating a pedestal in the center holding a glowing pendant. The lonely crew member looks around nervously, 'This must be what we came for.' As you reach for the pendant, you realize you could betray him and take everything for yourself, or share this discovery.",
+        options: [
+            { text: "Betray Him", next: "battle3" },
+            { text: "Tell him about the pendant", next: "endingTwo" }
+        ]
+    },
+    investigateGlimmerBadEnding: {
+        text: "You step closer to the glimmer, curiosity pulling you forward. As you brush aside some leaves, the ground suddenly gives way beneath your feet! You fall into a dark pit lined with sharp rocks. The lonely crew member’s desperate shouts echo above you, but there’s no way out. As darkness closes in, you regret not heeding your caution.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+
 
     tiredPath: {
         text: "You point at the right path, 'We'll take that path' you say. The tired crew member grabs more food and stashes it in his pocket, 'sure' he says before catching up with you. You both walk through the fog sticking close by each other. It had been silent the whole walk until the tired crew member points at a plant, 'look doesn't that plant look interesting?' You look and see a purple plant almost like a flower sitting in a green bush.",
@@ -1202,9 +1275,20 @@ function startRhythmGame(){
 
     if (matchIndex !== -1) {
         hitCount++;
+
+       const noteEl = [...gameArea.children].find(n =>
+        parseInt(n.style.left) === keys.indexOf(e.key) * 100
+    );
+    if (noteEl) {
+        noteEl.classList.add("hit");
+        setTimeout(() => {
+            if (noteEl.parentNode) noteEl.remove();
+        }, 300); 
+    }
+
         timingWindows.splice(matchIndex, 1);
         resultText.textContent = `Nice! Hits: ${hitCount}`;
-        resultText.classList.remove = "pulse"
+        resultText.classList.remove = ("pulse");
         void resultText.offsetWidth;
         resultText.classList.add("pulse")
         
