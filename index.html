@@ -6,21 +6,23 @@
     <title>Lost at Sea</title>
     <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-<body onload="showHomeScreen()"></body>
-     <div id="homeScreen" style="background-image: url('20250618_2044_Serene Pixel Sea_simple_compose_01jy34jbafebrssd32g4f24csh.png'); background-size: cover; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
-            <h1 style="color: white; font-size: 3em;">Lost at Sea</h1>
-            <button onclick="goToSaveMenu()">Continue</button>
-            <button onclick="startNewGame()">New Game</button>
-        </div>
+<body onload="showHomeScreen()">
+    <div id="homeScreen" class="home-screen" style="
+        background-image: url('20250618_2044_Serene Pixel Sea_simple_compose_01jy34jbafebrssd32g4f24csh.png');
+        background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;">
+        <h1 class="title">Lost at Sea</h1>
+        <button id="newGameBtn">New Game</button>
+        <button id="loadGameBtn">Load Game</button>
+        <button id="clearSaveBtn">Clear Save</button>
+    </div>
 
-        <div id="saveMenu" style="display: none; background-image: url('blurred_sea_background.png'); background-size: cover; height: 100vh;">
-        <h2>Select a Save File</h2>
-        <div id="saveSlots"></div>
-        </div>
-
-    <div id="game-container">
-        <h1>Lost at Sea</h1>
+    <div id="game-container" style="display: none;">
         <div id="text"></div>
         <div id="scene" class="scene-box"></div>
         <div id="options" class="button-box"></div>
@@ -31,8 +33,8 @@
             <button id="continueButton" style="display:none;">Continue</button>
             <audio id="bgMusic" src="bango.mp3" preload="auto"></audio>
         </div>
-
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -963,26 +963,8 @@ function updateInventory() {
 }
 
 function showHomeScreen() {
-    document.body.innerHTML = `
-        <div id="homeScreen" class="home-screen">
-            <h1 class="title" style="color: white;">Lost at Sea</h1>
-            <button id="newGameBtn" class="menu-btn">New Game</button>
-            <button id="loadGameBtn" class="menu-btn">Load Game</button>
-            <button id="clearSaveBtn" class="menu-btn">Clear Save</button>
-        </div>
-        <div id="game-container">
-            <div id="text"></div>
-            <div id="scene" class="scene-box"></div>
-            <div id="options" class="button-box"></div>
-            <div id="inventory" class="inventory-box"></div>
-            <div id="rhythmGame" style="display: none;">
-                <div id="gameArea"></div>
-                <p id="rhythmResult"></p>
-                <button id="continueButton" style="display:none;">Continue</button>
-                <audio id="bgMusic" src="bango.mp3" preload="auto"></audio>
-            </div>
-        </div>
-    `;
+   document.getElementById("homeScreen").style.display = "flex";
+   document.getElementById("game-container").style.display = "none";
 
     document.getElementById("newGameBtn").onclick = startNewGame;
     document.getElementById("loadGameBtn").onclick = loadGame;
@@ -992,8 +974,7 @@ function showHomeScreen() {
 
 function startNewGame() {
     document.getElementById("homeScreen").style.display = "none";
-    const gameContainer = document.getElementById("game-container");
-    gameContainer.style.display = "block";
+  document.getElementById("game-container").style.display = "flex";
     fadeToScene("intro");
 }
 
@@ -1053,26 +1034,6 @@ function clearSave() {
     alert("Save data cleared.");
 }
 
-
-
-function showHomeScreen() {
-    document.body.innerHTML = `
-        <div id="homeScreen" class="home-screen" style="background-image: url('20250618_2044_Serene Pixel Sea_simple_compose_01jy34jbafebrssd32g4f24csh.png'); background-size: cover; background-position: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <h1 class="title">Lost at Sea</h1>
-            <button id="newGameBtn" class="menu-btn">New Game</button>
-            <button id="loadGameBtn" class="menu-btn">Load Game</button>
-            <button id="clearSaveBtn" class="menu-btn">Clear Save</button>
-        </div>
-        <div id="game-container" style="display: none;">
-            <!-- Your original game-container HTML goes here or is injected on load -->
-        </div>
-    `;
-
-    
-    document.getElementById("newGameBtn").onclick = startNewGame;
-    document.getElementById("loadGameBtn").onclick = loadGame;
-    document.getElementById("clearSaveBtn").onclick = clearSave;
-}
 
 function startNewGame() {
     document.getElementById("homeScreen").style.display = "none";

@@ -18,29 +18,49 @@ body {
 }
 
 .menu-btn {
-    padding: 10px 20px;
-    font-size: 1.2em;
-    margin: 10px;
-    background-color: #ffffff33;
-    border: 2px solid white;
-    color: white;
-    cursor: pointer;
-    border-radius: 8px;
-    backdrop-filter: blur(4px);
+  padding: 1em 2em;
+  margin: 10px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #333;
+  font-family: 'Verdana', sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 .menu-btn:hover {
-    background-color: white;
-    color: black;
+  background-color: #f0f0f0;
+  transform: scale(1.05);
 }
 
 #game-container {
-    display: none;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  background-image: url('20250618_2044_Serene Pixel Sea_simple_compose_01jy34jbafebrssd32g4f24csh.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2em;
+  color: white;
+}
+
+text {
+  font-size: 1.5em;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1em;
+  border-radius: 10px;
+  margin-bottom: 1em;
+}
+
+#options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .scene-box, .button-box, .inventory-box {
@@ -60,26 +80,18 @@ body {
 }
 
 .fade-in {
-    animation: fadeIn 0.5s forwards;
+  animation: fadeIn 0.5s ease-in forwards;
 }
-
 .fade-out {
-    animation: fadeOut 0.5s forwards;
+  animation: fadeOut 0.5s ease-out forwards;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-#text, #options {
- background: rgba(0, 0, 0, 0.6);
- color: white;
- padding: 15px;
- margin: 20px;
- border-radius: 10px;
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
