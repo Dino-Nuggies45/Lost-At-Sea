@@ -273,7 +273,7 @@ const scenes = {
 
             { text: "Get ready for the day",
               next: "dailyChoresCrew",
-              condition: (state) => !state.choices.revealedTemple && !state.choices.gaveMagicShell
+              
             }
         ]
         
