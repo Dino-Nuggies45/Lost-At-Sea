@@ -698,12 +698,14 @@ const scenes = {
     },
 
     lonelyPath: {
-        text: "You point at the left path, 'We'll go that way,' you say. The lonely crew member nods quietly, his banjo slung over his shoulder. 'Mama used to play tunes like these...' he mutters softly. You both walk deeper into the woods, where shadows grow longer and the air feels heavier. Soon, you notice the ground is covered in soft moss, but it’s oddly quiet—too quiet. A faint rustling sounds nearby, but you can’t see anything.",
-        options: [
-            { text: "Call out softly to see if anything responds", next: "quietRustle" },
-            { text: "Press forward cautiously without a sound", next: "mossPath" }
-        ]
-    },
+    text: "You point at the left path, 'We'll go that way,' you say. The lonely crew member nods quietly, his banjo slung over his shoulder. 'Mama used to play tunes like these...' he mutters softly. You both walk deeper into the woods, where shadows grow longer and the air feels heavier. Soon, you notice the ground is covered in soft moss, but it’s oddly quiet—too quiet. A faint rustling sounds nearby, but you can’t see anything.",
+    options: [
+        { text: "Call out softly", next: "quietRustle" },
+        { text: "Move cautiously", next: "mossPath" },
+        { text: "Follow a strange humming sound", next: "fogWhispers" }, 
+        { text: "Investigate a distant bell ringing", next: "spiritWoods1" } 
+    ]
+},
 
     quietRustle: {
         text: "You whisper into the silence, and suddenly a small group of glowing fireflies emerge, dancing through the air. The lonely crew member smiles faintly, plucking a gentle chord on his banjo that seems to calm the forest itself. You both relax a bit and continue on, following the trail as it winds through tall ancient trees.",
@@ -954,7 +956,399 @@ const scenes = {
         options: [
             { text: "Run back to the raft", next: "intro" }
         ],
-    }
+    },
+    fogWhispers: {
+        text: "As you walk deeper, the fog thickens. Whispers begin to swirl around you — some in your voice, some unfamiliar. The lonely crew member clutches his banjo tightly, 'Do you hear that?' he whispers.",
+        options: [
+            { text: "Follow the whispers", next: "mirrorVoices" },
+            { text: "Cover your ears and keep walking", next: "clearPath" }
+        ]
+    },
+
+    mirrorVoices: {
+        text: "The voices lead you to a cracked mirror standing upright in the middle of the woods. The reflection is wrong — your partner is gone, and you're smiling. The mirror begins to ripple.",
+        options: [
+            { text: "Touch the mirror", next: "mirrorTrap" },
+            { text: "Back away slowly", next: "echoPath" }
+        ]
+    },
+
+    mirrorTrap: {
+        text: "As your fingers touch the glass, it pulls you in. You're trapped inside, watching your reflection walk away with your partner. You scream, but no one hears you. You're part of the forest now.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    echoPath: {
+        text: "You turn and run back into the fog, but the path has changed. Glowing mushrooms now line the dirt. The lonely crew member plays a chord, and one of the mushrooms pulses in response.",
+        options: [
+            { text: "Play a note back on his banjo", next: "harmonyGate" },
+            { text: "Step over the mushrooms", next: "mushroomSpores" }
+        ]
+    },
+
+    harmonyGate: {
+        text: "He strums again — this time mimicking birdsong. The mushrooms react, parting to reveal a narrow tunnel of trees. You follow it and emerge in a clearing filled with light and ancient stone — a hidden shrine.",
+        options: [
+            { text: "Enter the shrine", next: "shrinePeace" },
+            { text: "Search around the shrine for treasure", next: "shrineCurse" }
+        ]
+    },
+
+    shrinePeace: {
+        text: "Inside, you find a place of calm. The lonely crew member sits down and begins playing. The tune resonates with the stone, and light floods the room. You feel your body lift, and the pendant appears. No greed. No lies. Just home.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    shrineCurse: {
+        text: "You wander the edge of the shrine and spot a small chest. Inside is gold — and a ring pulsing with energy. The moment you touch it, the shrine groans. A crack forms beneath your feet. You fall into darkness.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    mushroomSpores: {
+        text: "As you step over the mushrooms, they burst into clouds of yellow spores. You cough, stumbling, and the forest begins to spin. The lonely crew member screams, but it's too late. You fall to your knees, laughing as everything fades.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    clearPath: {
+        text: "You push forward, ears covered, and the whispers fade. The fog begins to clear, revealing an ancient tree with glowing runes etched into the bark. It hums as you approach.",
+        options: [
+            { text: "Touch the tree", next: "treeBond" },
+            { text: "Ignore it and move on", next: "silentWatchers" }
+        ]
+    },
+
+    treeBond: {
+        text: "Your hand brushes the bark and a jolt rushes through you. Memories not your own flood your mind — voices, grief, music. When it fades, you're alone. The crew member is gone. But you're still playing the banjo.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    silentWatchers: {
+        text: "You pass the tree, and soon come upon tall stone figures. Their heads are turned toward you. The banjo goes silent. The figures begin to hum. You feel a tug at your soul — not evil, but final.",
+        options: [
+            { text: "Stay and hum with them", next: "stoneAscend" },
+            { text: "Run", next: "stoneJudgement" }
+        ]
+    },
+
+    stoneAscend: {
+        text: "You hum. Slowly, your body turns to stone, but your spirit drifts upward, carried by harmony. You've become part of the forest’s guardians — timeless, peaceful, and watching.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    stoneJudgement: {
+        text: "You run — foolishly. The forest twists. You see your crew member collapse behind you. The figures don’t follow, but the fog does. You choke, and vanish before you hit the ground.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+    lostTune1: {
+        text: "The lonely crew member starts humming a lullaby. The notes feel familiar, but wrong. 'Mama used to sing this... but not like this,' he says. The trees begin to hum back.",
+        options: [
+            { text: "Hum along", next: "lostTune2" },
+            { text: "Tell him to stop playing", next: "lostTune3" }
+        ]
+    },
+
+    lostTune2: {
+        text: "You join the tune, and the trees open a hidden path. Flowers bloom in your footprints. The crew member smiles sadly. 'This is the last song she sang.'",
+        options: [
+            { text: "Walk the blooming path", next: "lostTune4" },
+            { text: "Turn back", next: "lostTune5" }
+        ]
+    },
+
+    lostTune3: {
+        text: "He stops. The woods grow silent. You hear something snap far behind you — not a twig, but a scream. Something begins to follow.",
+        options: [
+            { text: "Run", next: "lostTune6" },
+            { text: "Hide", next: "lostTune7" }
+        ]
+    },
+
+    lostTune4: {
+        text: "You reach a small grove with a single grave. On the tombstone: *'My song lives in another.'* The pendant glows on the soil.",
+        options: [
+            { text: "Pick it up", next: "endingTwo" },
+            { text: "Leave it for the crew member", next: "lostTune8" }
+        ]
+    },
+
+    lostTune5: {
+        text: "You try to turn around — but the path has vanished. Your footsteps are gone. The humming stops. You're alone.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    lostTune6: {
+        text: "You run and run until your breath burns. But the sound keeps pace. When you look back — nothing is there. When you turn forward — neither are you.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    lostTune7: {
+        text: "You duck behind a twisted root. The crew member shushes you. But a voice, *your voice*, whispers from above, 'Found you.'",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    lostTune8: {
+        text: "The lonely crew member kneels and cries as he picks it up. 'She always said music could lead me home.' The pendant shines. You're both taken by light.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    lostTune9: {
+        text: "A strange wind begins to play the banjo strings on its own. The tune sounds like a heartbeat. The crew member steps back. 'That's not mine.'",
+        options: [
+            { text: "Play along", next: "lostTune10" },
+            { text: "Destroy the banjo", next: "lostTune11" }
+        ]
+    },
+
+    lostTune10: {
+        text: "You match the rhythm, and a spectral version of the crew member appears. It looks at him... then at you. 'Only one of us gets to leave.'",
+        options: [
+            { text: "Fight it", next: "battle3" },
+            { text: "Step back and say nothing", next: "lostTune12" }
+        ]
+    },
+
+    lostTune11: {
+        text: "You smash the banjo. The strings scream. The crew member watches in horror as the forest turns black and devours the light. 'You ruined it!'",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    lostTune12: {
+        text: "You let them stare. The ghost walks past you and fuses into the real crew member. His eyes glow. 'I'm home now,' he says. You aren't.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    lostTune13: {
+        text: "You discover an old letter carved into bark: *'Return the melody to the grave or be cursed forever.'*",
+        options: [
+            { text: "Bury the banjo", next: "lostTune14" },
+            { text: "Ignore the warning", next: "lostTune15" }
+        ]
+    },
+
+    lostTune14: {
+        text: "You bury the banjo together. The wind stops. Flowers bloom. A small glowing light floats upward. The forest breathes again.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    lostTune15: {
+        text: "Ignoring the warning, you keep walking. But your shadow doesn’t follow. The crew member stares behind you, pale. 'That’s not your shadow anymore.'",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    lostTune16: {
+        text: "You find a music box embedded in stone. When wound, it plays a tune that ages everything around it. Leaves wither. The crew member coughs.",
+        options: [
+            { text: "Smash the music box", next: "lostTune17" },
+            { text: "Let it finish the song", next: "lostTune18" }
+        ]
+    },
+
+    lostTune17: {
+        text: "You smash it. Time stops collapsing. The crew member breathes again. He looks at you like you just saved the world.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    lostTune18: {
+        text: "You let it play. The song finishes. The forest is gone. The crew member is dust. You are old. And alone.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    lostTune19: {
+        text: "The lonely crew member sits down and writes a song in the dirt. 'The last thing I’ll ever write.' When he finishes, he fades away.",
+        options: [
+            { text: "Erase the song", next: "lostTune20" },
+            { text: "Leave it untouched", next: "endingTwo" }
+        ]
+    },
+
+    lostTune20: {
+        text: "As you erase the last word, a scream tears from the sky. The world splits open. You took away a goodbye that wasn’t yours to steal.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+    spiritWoods1: {
+        text: "The lonely crew member pauses. 'Do you hear that?' A soft bell rings in the distance. It's rhythmic... like a heartbeat. The forest hushes.",
+        options: [
+            { text: "Follow the sound", next: "spiritWoods2" },
+            { text: "Ignore it and make your own noise", next: "spiritWoods3" }
+        ]
+    },
+
+    spiritWoods2: {
+        text: "You follow the bell to a clearing. A wooden mask sits atop a stone stump. The bell is coming from inside it.",
+        options: [
+            { text: "Put on the mask", next: "spiritWoods4" },
+            { text: "Leave it alone", next: "spiritWoods5" }
+        ]
+    },
+
+    spiritWoods3: {
+        text: "You shout, clap, and stomp — disturbing the silence. The trees recoil. The fog thickens. The crew member looks horrified. 'You woke it up.'",
+        options: [
+            { text: "Run!", next: "spiritWoods6" },
+            { text: "Stand still", next: "spiritWoods7" }
+        ]
+    },
+
+    spiritWoods4: {
+        text: "The moment you wear the mask, you see... differently. Paths hidden before now shimmer. The crew member looks at you like you’re glowing.",
+        options: [
+            { text: "Lead the way through the glowing path", next: "spiritWoods8" },
+            { text: "Take the mask off", next: "spiritWoods9" }
+        ]
+    },
+
+    spiritWoods5: {
+        text: "You leave it, but the bell doesn't stop. It rings faster. Louder. The crew member plugs his ears. 'MAKE IT STOP!' he cries.",
+        options: [
+            { text: "Smash the mask", next: "spiritWoods10" },
+            { text: "Throw it in the river", next: "spiritWoods11" }
+        ]
+    },
+
+    spiritWoods6: {
+        text: "You sprint. Branches claw at your clothes. Behind you, something roars. The crew member trips. You don’t stop.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    spiritWoods7: {
+        text: "You both freeze. The fog brushes past. The sound fades. In the silence, you hear a whisper: 'Wise one... you may pass.'",
+        options: [
+            { text: "Follow the wind", next: "spiritWoods12" }
+        ]
+    },
+
+    spiritWoods8: {
+        text: "You arrive at a moonlit ruin. The mask glows — revealing a doorway in solid stone. Inside is a golden altar with the pendant.",
+        options: [
+            { text: "Take it quietly", next: "endingTwo" },
+            { text: "Call your partner to take it", next: "spiritWoods13" }
+        ]
+    },
+
+    spiritWoods9: {
+        text: "You remove the mask. The vision vanishes — and so does the path. You're trapped in thorns. The crew member tries to cut you out, but it’s too late.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    spiritWoods10: {
+        text: "You smash the mask. The bell stops. The crew member exhales. But your hands are now covered in ash, and your voice is gone.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    spiritWoods11: {
+        text: "You throw the mask in the water. It hisses. The stream darkens. The fish float belly up. The crew member stares at you. 'You poisoned it.'",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    spiritWoods12: {
+        text: "You follow the wind and find an old tree with a swing. A child’s voice says, 'We waited so long for someone to play again.'",
+        options: [
+            { text: "Sit on the swing", next: "spiritWoods14" },
+            { text: "Bow respectfully and move on", next: "spiritWoods15" }
+        ]
+    },
+
+    spiritWoods13: {
+        text: "As your partner touches the pendant, he vanishes into light. His banjo remains behind, humming. You never hear from him again.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    spiritWoods14: {
+        text: "You sit on the swing. It begins to sway. Laughter surrounds you. The crew member vanishes. So does the forest. You’re alone, swinging forever.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    spiritWoods15: {
+        text: "The child giggles. 'You’re kind.' A wooden charm drops from the tree. You pick it up — it glows with the same light as the pendant.",
+        options: [
+            { text: "Use the charm", next: "spiritWoods16" }
+        ]
+    },
+
+    spiritWoods16: {
+        text: "The charm reveals the location of the real pendant — hidden beneath roots at your feet. Your honesty has been rewarded.",
+        options: [
+            { text: "Take the pendant", next: "endingTwo" }
+        ]
+    },
+
+    spiritWoods17: {
+        text: "You stumble into a grove of statues, each of someone mid-song. The crew member gasps. 'That's... Mama.'",
+        options: [
+            { text: "Sing the song she sang", next: "spiritWoods18" },
+            { text: "Break the statue", next: "spiritWoods19" }
+        ]
+    },
+
+    spiritWoods18: {
+        text: "You sing the lullaby. The statue of his mother glows and crumbles into petals. He wipes a tear. 'Thank you... for letting her go.'",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    spiritWoods19: {
+        text: "You strike the statue. A shriek pierces the forest. The statues twist toward you, mouths wide. You hear music no human should.",
+        options: [
+            { text: "Start Over?", next: "intro" }
+        ]
+    },
+
+    spiritWoods20: {
+        text: "The crew member quietly says, 'What if none of this is real?' He tosses his banjo aside. 'What if we never left the ship?'",
+        options: [
+            { text: "Tell him he's right", next: "battle3" },
+            { text: "Tell him you still believe", next: "endingTwo" }
+        ]
+    },
 };
 
 
